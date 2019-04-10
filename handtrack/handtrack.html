@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>handtrack js</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="stylesheet" type="text/css" href="../style.css" title="style" />
+		<link rel="stylesheet" href="track.css">
+		
+		
+    </head>
+    <body>
+
+	<section>
+	<div id="updatenote" class="loader"> loading model ...</div>
+	</section>
+	
+	<div>
+    <button  id="trackbutton" class="button buttonStart" type="button" disabled>
+      Toggle Video
+    </button>
+    
+    
+	</div>
+	
+    <section>
+	<video class="videobox canvasbox" autoplay="autoplay" id="myvideo"></video>
+	<canvas id="canvas" class="border canvasbox"></canvas>
+	</section>
+
+		
+	<section style="margin-top: 2.5em">
+    <button class="button buttonRed" onclick="location.href='../index.html'">← return</a></button>
+    </section>
+
+        <script src="handtrack.min.js"> </script>
+		<script src="index.js"></script>
+    </body>
+</html>

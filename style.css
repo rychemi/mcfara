@@ -1,0 +1,189 @@
+			body {
+                font-family: "Helvetica Neue", Helvetica, Arial, serif;
+                margin: 0;
+            }
+
+            
+			a, a:hover { 
+				outline: none;
+				text-decoration: none;
+				color: #FFFFFF;
+			}
+
+			a:hover {
+				text-decoration: none;
+				color: #85c1e9;
+			}
+
+            h1 {
+                font-size: 10em;
+                line-height: 1em;
+                color: #FFF;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .box {
+                display: inline-block;
+                margin: 15px;
+                width: 25%;
+                height: 5em;
+                line-height: 5em;
+                text-align: center;
+                font-size: 2em;
+                color: #fff;
+            }
+
+            #color-example {
+                -webkit-transition: background-color 300ms ease-in-out;
+                transition: background-color 300ms ease-in-out;
+				border: 1.5px dashed black;
+            }
+
+            #color-example ul {
+                text-align: center;
+            }
+
+            .red {
+                background-color: #e74c3c !important;
+            }
+
+            .blue {
+                background-color: #3498db !important;
+            }
+
+            .yellow {
+                background-color: #f1c40f !important;
+            }
+
+            .green {
+                background-color: #2ecc71 !important;
+            }
+
+            .violet {
+                background-color: #9b59b6 !important;
+            }
+
+            .orange {
+                background-color: #e67e22 !important;
+            }
+			
+			.gray {
+				background-color: #a6acaf !important;
+			}
+			
+			.black {
+				background-color: #000000 !important;
+			}
+			
+			.pink {
+				background-color: #f1948a !important;
+			}
+			
+
+            section {
+                margin: 0 20px 50px;
+                text-align: center;
+            }
+
+            .button {
+                padding: 12px 18px 13px;
+                border-radius: 0px;
+                line-height: 5em;
+                text-align: center;
+                font-size: 2em;
+                line-height: 1em;
+				cursor: pointer;
+				background-color: teal;
+                color: white;
+				border: none;
+				-webkit-transition-duration: 0.4s; /* Safari */
+				transition-duration: 0.4s;
+            }
+			
+			.button:hover {
+				background-color: white;
+				color: black;
+				border: 2px solid teal;
+			}
+			
+			.disabled {
+				opacity: 0.6;
+				cursor: not-allowed;
+			}
+			
+			.buttonNavy {
+				background-color: navy;
+                color: white;
+			}
+			
+			.buttonNavy:hover {
+				background-color: white;
+				color: black;
+				border: 2px solid navy;
+			}
+			
+			.buttonChoco {
+				background-color: chocolate;
+                color: white;
+			}
+			
+			.buttonChoco:hover {
+				background-color: white;
+				color: black;
+				border: 2px solid chocolate;
+			}
+			
+			.buttonRed {
+				background-color: darkRed;
+                color: white;
+			}
+			
+			.buttonRed:hover {
+				background-color: white;
+				color: black;
+				border: 2px solid darkRed;
+			}
+			
+			.buttonStart {
+				background-color: limegreen;
+                color: white;
+				border: 2px solid limegreen;
+			}
+			
+			.buttonStart:hover {
+				background-color: white;
+				color: black;
+				border: 2px solid limegreen;
+			}
+			
+			.buttonSky {
+				background-color: DeepSkyBlue;
+                color: white;
+			}
+			
+			.buttonSky:hover {
+				background-color: white;
+				color: black;
+				border: 2px solid DeepSkyBlue;
+			}
+			
+			.loader {
+				display: inline-block;
+                margin: 15px;
+                width: 60%;
+                height: 1.5em;
+                line-height: 1.5em;
+                text-align: center;
+                font-size: 1.5em;
+                color: #fff;
+				
+				padding: 12px 18px 13px;
+                border-radius: 0px;
+                
+				background-color: OrangeRed;
+                color: white;
+				border: none;
+			}
+
+			

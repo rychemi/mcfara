@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>annyang js</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="stylesheet" type="text/css" href="../style.css" title="style" />
+		
+		
+    </head>
+    <body>
+		
+		
+        <section>
+            <!--
+			<h2>Press "v" key and pick a command</h2>
+			-->
+            <div id="color-example">
+                <ul>
+                    <li class="box orange">start / turn on</li>
+                    <li class="box blue">go up</li>
+                    <li class="box violet">switch</li>
+                    <li class="box yellow">go back / left</li>
+                    <li class="box black">stop / turn off</li>
+                    <li class="box red">go next / right</li>
+					<li class="box gray">pause / wait</li>
+					<li class="box green">go down</li>
+					<li class="box pink">continue</li>
+                </ul>
+            </div>
+        </section>
+		
+		<section>
+            <!-- <h2>click to restart</h2> -->
+            <button class="button" onclick="restartColor()">click to restart</button>
+        </section>
+		
+		<section>
+            <button class="button" onclick="location.href='../index.html'">← return</a></button>
+        </section>
+		
+		<script>
+			function restartColor() {
+				document.querySelector('#color-example').className = 'white';
+			}
+		</script>
+
+<script src="annyang.js"></script>
+<script>
+if (annyang) {
+  // Let's define a command.
+  var commands = {
+    'hello': function() { alert('Hello!'); },
+	
+	'start': function() { document.querySelector('#color-example').className = 'orange'; },
+	'turn on': function() { document.querySelector('#color-example').className = 'orange'; },
+	'(go) up': function() { document.querySelector('#color-example').className = 'blue'; },
+	'switch': function() { document.querySelector('#color-example').className = 'violet'; },
+	'(go) back': function() { document.querySelector('#color-example').className = 'yellow'; },
+	'(go) left': function() { document.querySelector('#color-example').className = 'yellow'; },
+	'stop': function() { document.querySelector('#color-example').className = 'black'; },
+	'(turn) off': function() { document.querySelector('#color-example').className = 'black'; },
+	'(go) next': function() { document.querySelector('#color-example').className = 'red'; },
+	'(go) right': function() { document.querySelector('#color-example').className = 'red'; },
+	'pause': function() { document.querySelector('#color-example').className = 'gray'; },
+	'wait': function() { document.querySelector('#color-example').className = 'gray'; },
+	'(go) down': function() { document.querySelector('#color-example').className = 'green'; },
+	'continue': function() { document.querySelector('#color-example').className = 'pink'; }
+  };
+  
+
+  // Add our commands to annyang
+  annyang.addCommands(commands);
+
+  // Start listening.
+  annyang.start();
+}
+</script>
+
+    </body>
+</html>

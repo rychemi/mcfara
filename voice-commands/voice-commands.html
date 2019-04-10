@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>voice-commands js</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="stylesheet" type="text/css" href="../style.css" title="style" />
+		
+		
+    </head>
+    <body>
+
+        <section>
+            <!--
+			<h2>Press "v" key and pick a command</h2>
+			-->
+            <div id="color-example">
+                <ul>
+                    <li class="box orange">start / turn on</li>
+                    <li class="box blue">go up</li>
+                    <li class="box violet">switch</li>
+                    <li class="box yellow">go back / left</li>
+                    <li class="box black">stop / turn off</li>
+                    <li class="box red">go next / right</li>
+					<li class="box gray">pause / wait</li>
+					<li class="box green">go down</li>
+					<li class="box pink">continue</li>
+                </ul>
+            </div>
+        </section>
+		
+		<section>
+            <button class="button" onclick="restartColor()">click to restart</button>
+        </section>
+		
+		<section>
+            <button class="button" onclick="location.href='../index.html'">← return</a></button>
+        </section>
+		
+		<script>
+			function restartColor() {
+				document.querySelector('#color-example').className = 'white';
+				SPEECH.start();
+			}
+		</script>
+
+        <script src="voice-commands.js"></script>
+		
+		
+		
+        <script>
+        if ( SPEECH.isCapable() ) { // the browser supports speech recognition
+			SPEECH.onStart(function() {
+			//alert('Hello, let\'s start!');
+			});
+		
+			SPEECH.onStop(function() {
+			alert('Goodbye');
+			});
+    
+			SPEECH.addVoiceCommands([
+        {
+            command: /(go)?\s?up/,
+			callback: function() {
+				document.querySelector('#color-example').className = 'blue';
+			}
+		}, {
+			command: /(go)?\s?down/,
+			callback: function() {
+				document.querySelector('#color-example').className = 'green';
+			}
+        }, {
+			command: /(go)?\s?(next|right)/,
+			callback: function() {
+				document.querySelector('#color-example').className = 'red';
+			}
+        }, {
+			command: /(go)?\s?(back|left)/,
+			callback: function() {
+				document.querySelector('#color-example').className = 'yellow';
+			}
+        }, {
+			command: /(start|turn on)/,
+			callback: function() {
+				document.querySelector('#color-example').className = 'orange';
+			}
+		}, {
+            command: /(stop|turn off)/,
+            callback: function() {
+                document.querySelector('#color-example').className = 'black';
+            }
+		}, {
+			command: 'switch',
+			callback: function() {
+				document.querySelector('#color-example').className = 'violet';
+			}
+        }, {
+			command: /(pause|wait)/,
+			callback: function() {
+				document.querySelector('#color-example').className = 'gray';
+			}
+        }, {
+			command: 'continue',
+			callback: function() {
+				document.querySelector('#color-example').className = 'pink';
+			}
+		}]);
+    
+			SPEECH.onResult(function(result) {
+				// fires after commands set via addVoiceCommands are parsed.
+				// result.transcript is the object built by the speech recognition engine.
+				// result.confidence is confidence in decimals (0.02392)
+			});
+
+
+			SPEECH.start({
+				min_confidence: .3,
+				lang: 'en-US' // defaults to HTML lang attribute value, or user agent's language
+			});
+		}
+
+        </script>
+    </body>
+</html>

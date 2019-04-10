@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>mumble js - cz</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="stylesheet" type="text/css" href="../style.css" title="style" />
+		
+		
+	<script src="mumble.js"></script>	
+    </head>
+    <body>
+
+        <section>
+            <div id="color-example">
+                <ul>
+                    <li class="box orange">start / zapni</li>
+                    <li class="box blue">nahoru</li>
+                    <li class="box violet">přepni</li>
+                    <li class="box yellow">zpět / doleva</li>
+                    <li class="box black">zastav / vypni</li>
+                    <li class="box red">dál / doprava</li>
+					<li class="box gray">počkej</li>
+					<li class="box green">dolů</li>
+					<li class="box pink">pokračuj</li>
+                </ul>
+            </div>
+        </section>
+		
+		<section>
+            <button class="button" onclick="restartColor()">restartovat barvu</button>
+        </section>
+		
+		<section>
+            <button class="button" onclick="location.href='../index.html'">← zpět</a></button>
+        </section>
+		
+		<script>
+			function restartColor() {
+				document.querySelector('#color-example').className = 'white';
+			}
+		</script>
+		
+		
+	<script>
+	var mumble = new Mumble({
+		language: 'cs',
+		debug: true, // set to true to get some detailed information about what's going on
+
+		commands: [{
+			name: 'ahoj',
+			command: 'ahoj',
+			action: function() {
+				alert("Ahoj!");
+			}
+		},
+		{
+			name: 'up',
+			command: /(nahoru|jdi nahoru)/,
+			action: function() {
+				document.querySelector('#color-example').className = 'blue';
+			}
+		}, {
+			name: 'down',
+			command: /(jdi)?\s?dolů/,
+			action: function() {
+				document.querySelector('#color-example').className = 'green';
+			}
+		}, {
+			name: 'next',
+			command: /(jdi)?\s?(dál|doprava)/,
+			action: function() {
+				document.querySelector('#color-example').className = 'red';
+			}
+		}, {
+			name: 'back',
+			command: /(jdi)?\s?(zpět|zpátky|doleva)/,
+			action: function() {
+				document.querySelector('#color-example').className = 'yellow';
+			}
+		}, {
+			name: 'start',
+			command: /(start|zapni\s?(se)?)/,
+			action: function() {
+				document.querySelector('#color-example').className = 'orange';
+			}
+		}, {
+			name: 'stop',
+			command: /(zastav|vypni\s?(se)?)/,
+			action: function() {
+				document.querySelector('#color-example').className = 'black';
+			}
+		}, {
+			name: 'switch',
+			command: /přepni\s?(se)?/,
+			action: function() {
+				document.querySelector('#color-example').className = 'violet';
+			}
+		}, {
+			name: 'pause',
+			command: 'počkej',
+			action: function() {
+				document.querySelector('#color-example').className = 'gray';
+			}
+		}, {
+			name: 'continue',
+			command: 'pokračuj',
+			action: function() {
+				document.querySelector('#color-example').className = 'pink';
+			}
+		}]
+	});
+
+	// start listening
+	mumble.start();
+	</script>
+    </body>
+</html>

@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>annyang js - cz</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="stylesheet" type="text/css" href="../style.css" title="style" />
+		
+		
+    </head>
+    <body>
+		
+		
+        <section>
+            <div id="color-example">
+                <ul>
+                    <li class="box orange">start / zapni</li>
+                    <li class="box blue">nahoru</li>
+                    <li class="box violet">přepni</li>
+                    <li class="box yellow">zpět / doleva</li>
+                    <li class="box black">zastav / vypni</li>
+                    <li class="box red">dál / doprava</li>
+					<li class="box gray">počkej</li>
+					<li class="box green">dolů</li>
+					<li class="box pink">pokračuj</li>
+                </ul>
+            </div>
+        </section>
+		
+		<section>
+            <!-- <h2>click to restart</h2> -->
+            <button class="button" onclick="restartColor()">restartovat barvu</button>
+        </section>
+		
+		<section>
+            <button class="button" onclick="location.href='../index.html'">← zpět</a></button>
+        </section>
+		
+		<script>
+			function restartColor() {
+				document.querySelector('#color-example').className = 'white';
+			}
+		</script>
+
+	<script src="annyang.js"></script>
+	<script>
+	if (annyang) {
+		//set czech language
+		annyang.setLanguage('cs');
+	
+		var commands = {
+			'ahoj': function() { alert('Ahoj!'); },
+	
+			'start': function() { document.querySelector('#color-example').className = 'orange'; },
+			'zapni (se)': function() { document.querySelector('#color-example').className = 'orange'; },
+			'(jdi) nahoru': function() { document.querySelector('#color-example').className = 'blue'; },
+			'přepni (se)': function() { document.querySelector('#color-example').className = 'violet'; },
+			'(jdi) zpět': function() { document.querySelector('#color-example').className = 'yellow'; },
+			'(jdi) zpátky': function() { document.querySelector('#color-example').className = 'yellow'; },
+			'(jdi) doleva': function() { document.querySelector('#color-example').className = 'yellow'; },
+			'zastav': function() { document.querySelector('#color-example').className = 'black'; },
+			'vypni (se)': function() { document.querySelector('#color-example').className = 'black'; },
+			'(jdi) dál': function() { document.querySelector('#color-example').className = 'red'; },
+			'(jdi) doprava': function() { document.querySelector('#color-example').className = 'red'; },
+			'počkej': function() { document.querySelector('#color-example').className = 'gray'; },
+			'(jdi) dolů': function() { document.querySelector('#color-example').className = 'green'; },
+			'pokračuj': function() { document.querySelector('#color-example').className = 'pink'; }
+		};
+  
+
+		// Add our commands to annyang
+		annyang.addCommands(commands);
+
+		// Start listening.
+		annyang.start();
+	}
+	</script>
+
+    </body>
+</html>
