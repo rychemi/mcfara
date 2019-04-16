@@ -1,4 +1,4 @@
 # mcfara
-Multimodal Control for Augmented Reality Applications
+[Multimodal Control for Augmented Reality Applications](https://rychemi.github.io/mcfara/)
 
-rychemi.github.io/mcfara
+
