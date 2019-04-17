@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>JuliusJS</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="stylesheet" type="text/css" href="../style.css" title="style" />
+		
+	<script src="julius.js"></script>	
+    </head>
+    <body>
+
+        <section>
+            <div id="colorWindow">
+                <ul>
+                    <li class="box orange">start / turn on</li>
+                    <li class="box blue">go up</li>
+                    <li class="box violet">switch</li>
+                    <li class="box yellow">go back</li>
+                    <li class="box black">stop / turn off</li>
+                    <li class="box red">go next</li>
+					<li class="box gray">pause / wait</li>
+					<li class="box green">go down</li>
+					<li class="box pink">continue</li>
+                </ul>
+            </div>
+        </section>
+		
+		<section>
+            <!-- <h2>click to restart</h2> -->
+            <button class="button" onclick="restartColor()">click to restart</button>
+        </section>
+		
+		<section>
+            <button class="button" onclick="location.href='../index.html'">← return</a></button>
+        </section>
+		
+		<script>
+			function restartColor() {
+				document.querySelector('#color-example').className = 'white';
+			}
+		</script>
+
+        
+		
+		Say something:
+
+    <div id="what-you-said"></div>
+
+    Note that my vocabulary is limited for this demo.
+    
+    <script>
+    var express = require('express'),
+    app     = express();
+
+    app.use(express.static('path/to/dist'));
+
+    var julius = new Julius({
+      // log: true
+    });
+
+    julius.onrecognition = function(sentence) {
+      console.log('Sentence: ', sentence);
+      document.getElementById('what-you-said').innerHTML = sentence;
+    }
+    julius.onfirstpass = function(sentence) {
+      console.log('First pass: ', sentence);
+    }
+    julius.onfail = function() {
+      // This will throw its own Error
+      // console.error('fail');
+    }
+    // This will only log if you pass `log: true` in the options object
+    julius.onlog = function(log) {
+      console.log(log);
+    }
+    </script>
+        
+    </body>
+</html>

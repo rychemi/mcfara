@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>artyom js</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="stylesheet" type="text/css" href="../../style.css" title="style" />
+		
+		<script src="artyom.window.js"></script>
+		
+    </head>
+    <body>
+
+        <section>
+            <div id="colorWindow">
+                <ul>
+                    <li class="box orange">start / turn on</li>
+                    <li class="box blue">go up</li>
+                    <li class="box violet">switch</li>
+                    <li class="box yellow">go back / left</li>
+                    <li class="box black">stop / turn off</li>
+                    <li class="box red">go next / right</li>
+					<li class="box gray">pause / wait</li>
+					<li class="box green">go down</li>
+					<li class="box pink">continue</li>
+                </ul>
+            </div>
+        </section>
+		
+		<section>
+            <button class="button" onclick="restartColor()">click to restart</button>
+        </section>
+		
+		<section>
+            <button class="button" onclick="location.href='../../index.html'">← return</a></button>
+        </section>
+		
+		<script>
+			// Change color of colorWindow box to default white
+			function restartColor() {
+				document.querySelector('#colorWindow').className = 'white';
+			}
+			
+			// Change color of colorWindow box
+			function changeColor(newColor) {
+				document.querySelector('#colorWindow').className = newColor;
+			}
+		</script>
+
+	<script>
+		//
+		var artyom = new Artyom();
+
+		// Create and add new commands 
+		artyom.addCommands([
+			{
+				indexes: ['Hello','Hi','is someone there'],
+				action: (i) => {
+					artyom.say("Hello, it's me");
+				}
+			}, {
+				indexes: ['start', 'turn on'],
+				action: (i) => { changeColor('orange'); }
+			}, {
+				indexes: ['go up', 'up'],
+				action: (i) => { changeColor('blue'); }
+			}, {
+				indexes: [/(go)?\s?(back|left)/],
+				smart: true,
+				action: (i) => { changeColor('yellow'); }
+			}, {
+				indexes: [/(go)?\s?(next|right)/],
+				smart: true,
+				action: (i) => { changeColor('red'); }
+			}, {
+				indexes: [/(go)?\s?down/],
+				smart: true,
+				action: (i) => { changeColor('green'); }
+			}, {
+				indexes: ['stop', 'turn off'],
+				action: (i) => { changeColor('black'); }
+			}, {
+				indexes: ['switch'],
+				action: (i) => { changeColor('violet'); }
+			}, {
+				indexes: ['pause', 'wait'],
+				action: (i) => { changeColor('gray'); }
+			}, {
+				indexes: ['continue'],
+				action: (i) => { changeColor('pink'); }
+			}
+		]);
+
+		// Start listening
+		artyom.initialize({
+			lang: "en-US", // US english
+			continuous: true, // Listen forever
+			soundex: true,// Use the soundex algorithm to increase accuracy
+			debug: false, // Show messages in the console
+			//executionKeyword: "and do it now",
+			listen: true, // Start to listen commands !
+
+			// If providen, you can only trigger a command if you say its name
+			// e.g to trigger Good Morning, you need to say "Jarvis Good Morning"
+			//name: "Jarvis" 
+		}).then(() => {
+			console.log("Artyom has been succesfully initialized");
+		}).catch((err) => {
+			console.error("Artyom couldn't be initialized: ", err);
+		});
+		
+		//use text-to-speech function of artyom
+		function hello() {
+			artyom.say("Hello");
+		}
+	
+
+	</script>
+	
+		<section>
+            <button class="button" onclick="hello()">hello</a></button>
+        </section>
+	
+		
+        
+    </body>
+</html>

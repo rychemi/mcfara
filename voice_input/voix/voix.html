@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Voix JS</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="stylesheet" type="text/css" href="../../style.css" title="style" />
+		
+		
+    </head>
+    <body>
+
+        <section>
+            <h2>click to activate microphone</h2>
+            <button id="en" class="button buttonStart">START</button>
+        </section>
+
+        <section>
+            <h2>press "v" key and pick a command</h2>
+            <div id="colorWindow">
+                <ul>
+                    <li class="box orange">start / turn on</li>
+                    <li class="box blue">go up</li>
+                    <li class="box violet">switch</li>
+                    <li class="box yellow">go back / left</li>
+                    <li class="box black">stop / turn off</li>
+                    <li class="box red">go next / right</li>
+					<li class="box gray">pause / wait</li>
+					<li class="box green">go down</li>
+					<li class="box pink">continue</li>
+                </ul>
+            </div>
+        </section>
+		
+		<section>
+            <button class="button" onclick="restartColor()">click to restart</button>
+        </section>
+		
+		<section style="margin-left:2em; text-align:left">
+            <button class="button buttonRed" onclick="location.href='../voice_input.html'">← return</button>
+        </section>
+		
+		<script>
+			// Change color of colorWindow box to default white
+			function restartColor() {
+				document.querySelector('#colorWindow').className = 'white';
+			}
+			
+			// Change color of colorWindow box
+			function changeColor(newColor) {
+				document.querySelector('#colorWindow').className = newColor;
+			}
+		</script>
+
+        <script src="voix.js"></script>
+        <script>
+            document.querySelector('#en').addEventListener('click', english);
+
+            function english() {
+                var voix = new Voix('en-US');
+
+                voix
+					.setCommand('hello', function() {
+                        alert('Hello world!');
+                    })
+					
+					.setCommand('go next', function () {
+                        changeColor('red');
+                    })
+					.setCommand('next', function () {
+                        changeColor('red');
+                    })
+					.setCommand('go right', function () {
+                        changeColor('red');
+                    })
+					.setCommand('right', function () {
+                        changeColor('red');
+                    })
+                    .setCommand('go up', function () {
+                        changeColor('blue');
+                    })
+					.setCommand('up', function () {
+                        changeColor('blue');
+                    })
+                    .setCommand('go back', function () {
+                        changeColor('yellow');
+                    })
+					.setCommand('back', function () {
+                        changeColor('yellow');
+                    })
+					.setCommand('go left', function () {
+                        changeColor('yellow');
+                    })
+					.setCommand('left', function () {
+                        changeColor('yellow');
+                    })
+                    .setCommand('go down', function () {
+                        changeColor('green');
+                    })
+					.setCommand('down', function () {
+                        changeColor('green');
+                    })
+                    .setCommand('switch', function () {
+                        changeColor('violet');
+                    })
+                    .setCommand('start', function () {
+                        changeColor('orange');
+                    })
+					.setCommand('turn on', function () {
+                        changeColor('orange');
+                    })
+					.setCommand('continue', function () {
+                        changeColor('pink');
+                    })
+					.setCommand('pause', function () {
+                        changeColor('gray');
+                    })
+					.setCommand('wait', function () {
+                        changeColor('gray');
+                    })
+					.setCommand('stop', function () {
+                        changeColor('black');
+                    })
+					.setCommand('turn off', function () {
+                        changeColor('black');
+                    });
+            }
+			
+			// Start listening
+			voix.start();
+
+        </script>
+    </body>
+</html>

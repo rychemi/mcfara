@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Voix JS - cz</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="stylesheet" type="text/css" href="../../style.css" title="style" />
+		
+		
+    </head>
+    <body>
+
+        <section>
+            <h2>aktivace mikrofonu</h2>
+            <button id="starter" class="button buttonStart">START</button>
+        </section>
+
+        <section>
+            <h2>podrž "v" klávesu a řekni příkaz</h2>
+            <div id="colorWindow">
+                <ul>
+                    <li class="box orange">start / zapni</li>
+                    <li class="box blue">nahoru</li>
+                    <li class="box violet">přepni</li>
+                    <li class="box yellow">zpět / doleva</li>
+                    <li class="box black">zastav / vypni</li>
+                    <li class="box red">dál / doprava</li>
+					<li class="box gray">počkej</li>
+					<li class="box green">dolů</li>
+					<li class="box pink">pokračuj</li>
+                </ul>
+            </div>
+        </section>
+		
+		<section>
+            <!-- <h2>click to restart</h2> -->
+            <button class="button" onclick="restartColor()">restartovat barvu</button>
+        </section>
+		
+		<section style="margin-left:2em; text-align:left">
+            <button class="button buttonRed" onclick="location.href='../voice_input.html'">← zpět</button>
+        </section>
+		
+		<script>
+			// Change color of colorWindow box to default white
+			function restartColor() {
+				document.querySelector('#colorWindow').className = 'white';
+			}
+			
+			// Change color of colorWindow box
+			function changeColor(newColor) {
+				document.querySelector('#colorWindow').className = newColor;
+			}
+		</script>
+
+        <script src="voix.js"></script>
+        <script>
+            document.querySelector('#starter').addEventListener('click', listen);
+
+            function listen() {
+				// Initialize voix class with desired language
+                var voix = new Voix('cs');
+
+				// Create and add new commands
+                voix
+					.setCommand('ahoj', function() {
+                        alert('Ahoj!');
+                    })
+					
+                    .setCommand('jdi dál', function () { changeColor('red'); })
+					.setCommand('dál', function () { changeColor('red'); })
+					.setCommand('jdi doprava', function () { changeColor('red'); })
+					.setCommand('doprava', function () { changeColor('red'); })
+                    .setCommand('jdi nahoru', function () { changeColor('blue'); })
+					.setCommand('nahoru', function () { changeColor('blue'); })
+                    .setCommand('jdi zpět', function () { changeColor('yellow'); })
+					.setCommand('zpět', function () { changeColor('yellow'); })
+					.setCommand('jdi zpátky', function () { changeColor('yellow'); })
+					.setCommand('zpátky', function () { changeColor('yellow'); })})
+					.setCommand('jdi doleva', function () { changeColor('yellow'); })
+					.setCommand('doleva', function () { changeColor('yellow'); })
+                    .setCommand('jdi dolů', function () { changeColor('green'); })
+					.setCommand('dolů', function () { changeColor('green'); })
+                    .setCommand('přepni', function () { changeColor('violet'); })
+                    .setCommand('start', function () { changeColor('orange'); })
+					.setCommand('zapni', function () { changeColor('orange'); })
+					.setCommand('zapni se', function () { changeColor('oraneg'); })
+					.setCommand('pokračuj', function () { changeColor('pink'); })
+					.setCommand('počkej', function () { changeColor('gray'); })
+					.setCommand('přepni', function () { changeColor('violet'); })
+					.setCommand('zastav', function () { changeColor('black'); })
+					.setCommand('vypni', function () { changeColor('black'); })
+					.setCommand('vypni se', function () { changeColor('black'); });
+            }
+
+        </script>
+    </body>
+</html>
