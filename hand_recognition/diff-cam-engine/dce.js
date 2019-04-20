@@ -1,5 +1,5 @@
 var $motionBox = $('.motion-box');
-var $turret = $('img');
+
 
 var scale = 10;	// capture resolution over motion resolution
 var isActivated = false;
@@ -21,6 +21,7 @@ function startComplete() {
 
 function activate() {
 	isActivated = true;
+	//play('activated');
 }
 
 function capture(payload) {
@@ -42,10 +43,28 @@ function capture(payload) {
 			top: top,
 			width: width,
 			height: height
-		});		
+		});
 
 		if (!isTargetInSight) {
 			isTargetInSight = true;
+			//play('i-see-you');
+		}
+
+		var middleX = (box.x.max + box.x.min) / 2;
+		var middleY = (box.y.max + box.y.min) / 2;
+		//document.getElementById("log").innerHTML += "Y=" + middleY + "; ";
+		if (middleX > 50) {
+			document.getElementById("log").innerHTML += "LEFT ";
+		}
+		if (middleX < 10) {
+			document.getElementById("log").innerHTML += "RIGHT ";
+		}
+
+		if (middleY < 15) {
+			document.getElementById("log").innerHTML += "UP ";
+		}
+		if (middleY > 40) {
+			document.getElementById("log").innerHTML += "DOWN ";
 		}
 
 		clearTimeout(lostTimeout);
@@ -54,8 +73,10 @@ function capture(payload) {
 
 	// video is flipped, so (0, 0) is at top right
 	if (payload.checkMotionPixel(0, 0)) {
-		knockOver();
+
 	}
+
+	
 }
 
 function declareLost() {
@@ -66,7 +87,7 @@ function knockOver() {
 	isKnockedOver = true;
 	clearTimeout(lostTimeout);
 
-	$turret.addClass('knocked-over');
+	
 	$motionBox.hide();
 
 }
@@ -74,7 +95,7 @@ function knockOver() {
 
 DiffCamEngine.init({
 	video: document.getElementById('video'),
-	captureIntervalTime: 50,
+	captureIntervalTime: 25,
 	includeMotionBox: true,
 	includeMotionPixels: true,
 	initSuccessCallback: initSuccess,
