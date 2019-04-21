@@ -1,6 +1,5 @@
 var $motionBox = $('.motion-box');
 
-
 var scale = 10;	// capture resolution over motion resolution
 var isActivated = false;
 var lostTimeout;
@@ -19,7 +18,6 @@ function startComplete() {
 
 function activate() {
 	isActivated = true;
-	//play('activated');
 }
 
 function capture(payload) {
