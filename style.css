@@ -1,8 +1,7 @@
 			body {
                 font-family: Helvetica, sans-serif;
-                margin: 0;
+				margin: 0;
             }
-
             
 			a, a:hover { 
 				outline: none;
@@ -45,42 +44,45 @@
             }
 
             .red {
-                background-color: #e74c3c !important;
+                background-color: #ff0000;
             }
 
             .blue {
-                background-color: #3498db !important;
+                background-color: #0066cc;
             }
 
             .yellow {
-                background-color: #f1c40f !important;
+                background-color: #ffcc00;
             }
 
             .green {
-                background-color: #2ecc71 !important;
+                background-color: #00b300;
             }
 
             .violet {
-                background-color: #9b59b6 !important;
+                background-color: #9900cc;
             }
 
             .orange {
-                background-color: #e67e22 !important;
+                background-color: #ff6600;
             }
 			
+			.pink {
+				background-color: #ff5050;
+			}
+			
 			.gray {
-				background-color: #a6acaf !important;
+				background-color: #aaa;
 			}
 			
 			.black {
-				background-color: #000000 !important;
+				background-color: #000;
 			}
 			
-			.pink {
-				background-color: #f1948a !important;
+			.white {
+				background-color: #fff;
 			}
 			
-
             section {
                 margin: 0 20px 50px;
                 text-align: center;
@@ -113,14 +115,14 @@
 			}
 			
 			.buttonNavy {
-				background-color: navy;
+				background-color: #02085b;
                 color: white;
 			}
 			
 			.buttonNavy:hover {
 				background-color: white;
 				color: black;
-				border: 2px solid navy;
+				border: 2px solid #02085b;
 			}
 			
 			.buttonChoco {
@@ -134,16 +136,29 @@
 				border: 2px solid chocolate;
 			}
 			
-			.buttonRed {
-				background-color: darkRed;
+			.buttonGreen {
+				background-color: Chartreuse;
                 color: white;
 			}
 			
-			.buttonRed:hover {
+			.buttonGreen:hover {
 				background-color: white;
 				color: black;
-				border: 2px solid darkRed;
+				border: 2px solid Chartreuse;
 			}
+
+			.buttonSky {
+				background-color: DeepSkyBlue;
+                color: white;
+			}
+			
+			.buttonSky:hover {
+				background-color: white;
+				color: black;
+				border: 2px solid DeepSkyBlue;
+			}
+
+
 			
 			.buttonStart {
 				background-color: limegreen;
@@ -157,7 +172,7 @@
 				border: 2px solid limegreen;
 			}
 			
-			sectionReturn {
+			.sectionReturn {
 				margin-left:2em;
 				margin-top:2em;
 				text-align:left;
@@ -170,6 +185,7 @@
 				background-color: darkRed;
                 color: white;
 				border: 2px solid darkRed;
+				font-size: 1.25em;
 			}
 			
 			.buttonReturn:hover {
@@ -178,33 +194,12 @@
 				border: 2px solid darkRed;
 			}
 			
-			.buttonSky {
-				background-color: DeepSkyBlue;
-                color: white;
+
+
+			.f15 {
+				font-size: 1.5em;
 			}
 			
-			.buttonSky:hover {
-				background-color: white;
-				color: black;
-				border: 2px solid DeepSkyBlue;
-			}
 			
-			.loader {
-				display: inline-block;
-                margin: 15px;
-                width: 60%;
-                height: 1.5em;
-                line-height: 1.5em;
-                text-align: center;
-                font-size: 1.5em;
-                color: #fff;
-				
-				padding: 12px 18px 13px;
-                border-radius: 0px;
-                
-				background-color: OrangeRed;
-                color: white;
-				border: none;
-			}
 
 			

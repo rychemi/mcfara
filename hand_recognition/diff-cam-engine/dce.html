@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>dif-cam-engine</title>
-
-		<link href="dce.css" rel="stylesheet">
+      <title>dif-cam-engine</title>
+			
+			<link rel="stylesheet" type="text/css" href="../../style.css" title="style" />
+			<link href="dce.css" rel="stylesheet">
     </head>
     <body>
 		
@@ -16,11 +17,20 @@
 			
 		</div>
 
-		<p>log: </p>
-		<div id="log"> </div> 
+		<div style="border: 2px dashed black">
+			<p style="font-weight: bold;"> Command History: </p>
+			<div id="log"> </div> 
+		</div>
+		
+		<div style="margin-top:0.5em">
+		<button class="button f15" onclick="restartLog()"> restart log </button>
+		</div>
+		<br>
 
-		<br> <button class="button" onclick="restartLog()"> restart log </button>
-
+		<section class="sectionReturn" >
+			<button class="button buttonReturn" onclick="location.href='../hand_recognition.html'">← return</button>
+		</section>
+		
 		<script> function restartLog() { document.getElementById("log").innerHTML = ""; }</script>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

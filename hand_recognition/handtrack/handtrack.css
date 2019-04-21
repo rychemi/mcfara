@@ -1,0 +1,38 @@
+body {
+    padding: 10px;
+}
+
+.canvasbox {
+    border-radius: 3px;
+    margin-right: 10px;
+    width: 450px;
+    height: 338px;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+.block {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.loader {
+    display: inline-block;
+    margin: 2px;
+    width: 60%;
+    height: 1em;
+    line-height: 1em;
+    text-align: center;
+    font-size: 1em;
+    color: #fff;
+    
+    padding: 12px 18px 13px;
+    
+    
+    background-color: OrangeRed;
+    color: white;
+    border: none;
+}

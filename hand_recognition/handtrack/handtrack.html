@@ -7,40 +7,36 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
 
 		<link rel="stylesheet" type="text/css" href="../../style.css" title="style" />
-		<link rel="stylesheet" href="track.css">
-		
-		
+		<link rel="stylesheet" href="handtrack.css">
+				
     </head>
     <body>
 
 	<section>
-	<div id="updatenote" class="loader"> loading model ...</div>
+		<div id="updatenote" class="loader"> loading model ...</div>
+		<br>
+		<button  id="trackbutton" class="button buttonStart f15" type="button" > Start/Stop Recognition </button>
 	</section>
-	
-	<div>
-    <button  id="trackbutton" class="button buttonStart" type="button" disabled>
-      Toggle Video
-    </button>
-    
-	</div>
-	
+		
     <section>
-	<video class="videobox canvasbox" autoplay="autoplay" id="myvideo"></video>
+	<video class="videobox canvasbox hidden" autoplay="autoplay" id="myvideo"></video>
 	<canvas id="canvas" class="border canvasbox"></canvas>
 	</section>
 	
 	<section> 
-	<div id="colorWindow">
-		<h2> Command history: </h2>
-		<div id="notepad"> <br/></div>
-	</div> 
+		<div>
+			<p style="font-weight: bold;"> Command History: </p>
+			<div id="notepad"> </div>
+			
+		</div> 
+		<button class="button f15" onclick="restartLog()"" style="margin-top: 2px" > restart log </button>
 	</section>
 	
-	<section style="margin-left:2em; text-align:left">
-        <button class="button buttonRed" onclick="location.href='../hand_recognition.html'">← return</button>
-    </section>
+		<button class="button buttonReturn" onclick="location.href='../hand_recognition.html'">← return</button>
 
         <script src="handtrack.min.js"> </script>
-		<script src="index.js"></script>
+		<script src="tracker.js"></script>
+
+		<script> function restartLog() { document.getElementById("log").innerHTML = ""; }</script>
     </body>
 </html>
