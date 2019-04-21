@@ -95,7 +95,7 @@ function knockOver() {
 
 DiffCamEngine.init({
 	video: document.getElementById('video'),
-	captureIntervalTime: 25,
+	captureIntervalTime: 50,
 	includeMotionBox: true,
 	includeMotionPixels: true,
 	initSuccessCallback: initSuccess,
