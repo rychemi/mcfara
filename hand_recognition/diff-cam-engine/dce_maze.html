@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <meta charset="utf-8" />
+        <title>maze diff-cam-engine</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="stylesheet" type="text/css" href="../../style.css" title="style" />		
+		<link href="dce.css" rel="stylesheet">
+
+		<script src="../../maze.js"></script>
+		<!-- htmlMaze taken from https://github.com/JakeMoe/htmlMaze -->
+		
+  </head>
+	<body onload="onLoad();">
+		
+		<section style="margin-top: 1em; margin-left: 10%">
+				<div style="margin-left: 2.5em; text-align: center; ">
+					<table style="margin: auto; width: 75%; ">
+						<td>
+						<table>
+							<tbody>
+								<tr>
+									<td><label for="size">size: </label></td>
+									<td><input id="size" type="text" size="5" value="4" style="text-align:center;"/></td>
+								
+								</tr><tr>
+									<td>&nbsp;</td>
+									<td><input id="generate" type="button" value="Generate" /></td>
+								</tr><tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+								</tr><tr>
+									<td><label for="score">score: </label></td>
+									<td><div id="score" style="text-align:center;">0</div></td>
+								</tr>
+							</tbody>
+						</table>
+						</td>
+						<td>
+								<canvas id="mainForm"></canvas>
+						</td>
+					</table>
+				</div>
+			
+			
+		</section>
+	
+		<div class="wrapper">
+				<video id="video" autoplay></video>
+				<div class="motion-box"></div>
+				
+		</div>
+		
+	
+			<section class="sectionReturn" >
+				<button class="button buttonReturn" onclick="location.href='../hand_recognition.html'">← return</button>
+			</section>
+
+		<script>
+		function move(direction) {
+			changeDirection(direction);
+		}
+		</script>
+
+<script> function restartLog() { document.getElementById("log").innerHTML = ""; }</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="diff-cam-engine.js"></script>
+<script src="dce_maze.js"></script>
+
+  </body>
+</html>
