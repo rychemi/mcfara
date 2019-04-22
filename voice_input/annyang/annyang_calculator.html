@@ -11,11 +11,17 @@
 	
     <body>		
 	
-		<section style="margin-top:1em">
+		<p style="font-weight: bold; text-align:center; "> say "write down (some number)"  </p>
+        <section style="margin-top:1em">
 			<div id="colorWindow">
-				<div id="calculator"><h2>Calculator: </h2></div>
+				<p style="font-weight: bold;">Number catched: </p>
+				<div id="calculator"></div>
 			</div>
 		</section>
+		
+		<div style="margin-top:0.5em; text-align:center;">
+		<button class="button f15" onclick="restartLog()"> restart log </button>
+		</div>
 		
 		<section class="sectionReturn">
             <button class="button buttonReturn" onclick="location.href='../voice_input.html'">← return</button>
@@ -37,7 +43,7 @@
 			'write down :num': function(num) { addNumber(num); },
 			'add number *num': function(num) { addNumber(num); },
 		
-			'zero': function() {   addNumber("0"); },
+			'zero': function() {   addNumber(0); },
 			'ten': function() {  addNumber(10); },
 		
 			'one': function() {  addNumber(1); },
