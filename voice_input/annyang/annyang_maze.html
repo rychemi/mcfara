@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <meta charset="utf-8" />
+        <title>maze annyang</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="stylesheet" type="text/css" href="../../style.css" title="style" />
+		
+		<script src="../../maze.js"></script>
+		<!-- htmlMaze taken from https://github.com/JakeMoe/htmlMaze -->
+		
+  </head>
+	<body onload="onLoad();">
+		
+		<section style="margin-top:1em;">
+				<div style="margin-left:2.5em;">
+						<p><b>commands:</b> (move / go)&nbsp; up / down / left / right</p>	
+						<table>
+							<tbody>
+								<tr>
+									<td><label for="size">size: </label></td>
+									<td><input id="size" type="text" size="5" value="4" style="text-align:center;"/></td>
+								
+								</tr><tr>
+									<td>&nbsp;</td>
+									<td><input id="generate" type="button" value="Generate" /></td>
+								</tr><tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+								</tr><tr>
+									<td><label for="score">score: </label></td>
+									<td><div id="score" style="text-align:center;">0</div></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+			<canvas id="mainForm"></canvas>
+			
+		</section>
+	
+		
+		<section class="sectionReturn">
+      <button class="button buttonReturn" onclick="location.href='../../mazes.html'">← return</button>
+    </section>
+		
+		<script>
+		function move(direction) {
+			changeDirection(direction);
+		}
+		</script>
+
+		<script src="annyang.js"></script>
+		<script>
+		if (annyang) { 
+			// Create commands
+		  var commands = {
+			'hello': function() { alert('Hello!'); },
+			
+			'(go) up': function() { move(38); },
+			'(go) left': function() { move(37); },
+			'(go) right': function() { move(39); },
+			'(go) down': function() { move(40); },
+			
+			'move up': function() { move(38); },
+			'move left': function() { move(37); },
+			'move right': function() { move(39); },
+			'move down': function() { move(40); }
+		  };
+		  
+
+			// Add commands to annyang
+		  annyang.addCommands(commands);
+
+			// Start listening.
+		  annyang.start();
+		}
+		</script>
+
+  </body>
+</html>

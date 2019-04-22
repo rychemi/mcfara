@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <meta charset="utf-8" />
+        <title>bludiště annyang</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="stylesheet" type="text/css" href="../../style.css" title="style" />
+		
+		<script src="../../maze.js"></script>
+		<!-- htmlMaze taken from https://github.com/JakeMoe/htmlMaze -->
+		
+  </head>
+	<body onload="onLoad();">
+		
+		<section style="margin-top:1em;">
+				<div style="margin-left:2.5em;">
+						<p><b>příkazy:</b> (jdi / posuň se)&nbsp; nahoru / dolů / doleva / doprava</p>	
+						<table>
+							<tbody>
+								<tr>
+									<td><label for="size">velikost: </label></td>
+									<td><input id="size" type="text" size="5" value="4" style="text-align:center;"/></td>
+								
+								</tr><tr>
+									<td>&nbsp;</td>
+									<td><input id="generate" type="button" value="vygenerovat" /></td>
+								</tr><tr>
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+								</tr><tr>
+									<td><label for="score">skóre: </label></td>
+									<td><div id="score" style="text-align:center;">0</div></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+			<canvas id="mainForm"></canvas>
+			
+		</section>
+	
+		
+		<section class="sectionReturn">
+      <button class="button buttonReturn" onclick="location.href='../../mazes.html'">← return</button>
+    </section>
+		
+		<script>
+		function move(direction) {
+			changeDirection(direction);
+		}
+		</script>
+
+<script src="annyang.js"></script>
+<script>
+if (annyang) {
+	// Set Czech language
+	annyang.setLanguage('cs');
+
+	var commands = {
+		'ahoj': function() { alert('Ahoj!'); },
+
+			'(jdi) nahoru': function() { move(38); },
+			'(jdi) doleva': function() { move(37); },
+			'(jdi) doprava': function() { move(39); },
+			'(jdi) dolů': function() { move(40); },
+			
+			'posuň se nahoru': function() { move(38); },
+			'posuň se doleva': function() { move(37); },
+			'posuň se doprava': function() { move(39); },
+			'posuň se dolů': function() { move(40); }
+	};
+
+
+	// Add our commands to annyang
+	annyang.addCommands(commands);
+
+	// Start listening.
+	annyang.start();
+}
+</script>
+
+  </body>
+</html>

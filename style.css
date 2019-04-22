@@ -158,7 +158,16 @@
 				border: 2px solid DeepSkyBlue;
 			}
 
-
+			.buttonOrange {
+				background-color: darkorange;
+                color: white;
+			}
+			
+			.buttonOrange:hover {
+				background-color: white;
+				color: black;
+				border: 2px solid darkorange;
+			}
 			
 			.buttonStart {
 				background-color: limegreen;
