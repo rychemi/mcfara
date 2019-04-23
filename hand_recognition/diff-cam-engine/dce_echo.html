@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <meta charset="utf-8" />
+        <title>echo diff-cam-engine</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="stylesheet" type="text/css" href="../../style.css" title="style" />		
+		<link href="dce.css" rel="stylesheet">
+		
+  </head>
+	<body onload="onLoad();">
+		
+		<section style="margin-top: 1em; text-align: center;">
+			
+			<div id="instruction">&nbsp;</div>
+
+			<p>Score: </p><div id="score">&nbsp;</div>
+
+			<div class="stopwatch"></div>
+			
+		</section>
+
+			<script src="../../stopwatch.js"></script>
+
+
+	
+		<div class="wrapper">
+				<video id="video" autoplay></video>
+				<div class="motion-box"></div>
+				
+		</div>
+
+		<section>
+			<ul class="results"></ul>
+		</section>
+		
+			<section class="sectionReturn" >
+				<button class="button buttonReturn" onclick="location.href='../../mazes.html'">← return</button>
+			</section>
+
+		<script>
+		function move(direction) {
+			changeDirection(direction);
+		}
+
+		let stopwatch = new Stopwatch(
+  		document.querySelector('.stopwatch'),
+			document.querySelector('.results'));
+			
+		function startStopwatch() {
+			stopwatch.start();
+		}	
+		function stopwatchLap() {
+			stopwatch.lap();
+		}
+		function stopStopwatch() {
+			stopwatch.stop();
+		}
+		</script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="diff-cam-engine.js"></script>
+<script src="dce_echo.js"></script>
+
+  </body>
+</html>

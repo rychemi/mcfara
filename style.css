@@ -203,7 +203,9 @@
 				border: 2px solid darkRed;
 			}
 			
-
+			.hidden {
+				display: none;
+			}	
 
 			.f15 {
 				font-size: 1.5em;
