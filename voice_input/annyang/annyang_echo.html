@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>annyang js</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="stylesheet" type="text/css" href="../../style.css" title="style" />
+		
+		
+    </head>
+    <body>
+        <section style="margin-top: 1em; text-align: center;">
+		
+						<button class="button  f15" onclick="begin(1)">start [1]</button>
+						<button style="margin-left: 0.5em; " class="button  f15" onclick="begin(2)">start [2]</button>
+									
+						<table align="center" style="margin-top: 1em;">
+							<td><label for="score">score: </label></td>
+							<td><div id="score" style="text-align:center;">0</div></td>
+						</table>
+						<div class="stopwatch"></div>
+				
+				<h2><div id="instruction">&nbsp;</div></h2>
+			</section>
+		
+			<section>
+				<div id="colorWindow">
+				<ul class="results"></ul>
+				</div>
+			</section>
+			
+			<section class="sectionReturn" >
+				<button class="button buttonReturn" onclick="location.href='../../echos.html'">← return</button>
+			</section>
+		
+		<script>
+			
+		</script>
+
+		<script src="annyang.js"></script>
+		<script>
+		if (annyang) { 
+			// Create commands
+		  var commands = {
+			'hello': function() { alert('Hello!'); },
+			
+			'(go) up': function() { processResult(38); },
+			'(go) left': function() { processResult(37); },
+			'(go) right': function() { processResult(39); },
+			'(go) down': function() { processResult(40); }, 
+			
+			'(move) up': function() { processResult(38); },
+			'(move) left': function() { processResult(37); },
+			'(move) right': function() { processResult(39); },
+			'(move) down': function() { processResult(40); }
+		  };
+		  
+
+			// Add commands to annyang
+			annyang.addCommands(commands);
+			
+			// Add callback after what said do not match with any command 
+			annyang.addCallback('resultNoMatch', function(userSaid, commandText, phrases) {
+				processResult(0);
+			});
+
+			// Start listening.
+		  annyang.start();
+		}
+		</script>
+
+		<script src="../../stopwatch.js"></script>
+		<script>
+				let stopwatch = new Stopwatch(
+					document.querySelector('.stopwatch'),
+					document.querySelector('.results'));
+					
+				function startStopwatch() {
+					stopwatch.start();
+				}	
+				function stopwatchLap(direction, result) {
+					stopwatch.lapWithResult(direction, result);
+				}
+				function stopStopwatch() {
+					stopwatch.stop();
+				}
+				function restartStopwatch() {
+					stopwatch.restart();
+				}
+		
+				function begin(num) {
+					playScript(num);
+				}
+		</script>
+		
+		<script>
+			//up = 38, down = 40, left = 37, right = 39
+			//up, up, down, down, left, right, left, right, up, down, up, down, left, left, right, right
+			var dirScript1 = [38, 38, 40, 40, 37, 39, 37, 39, 38, 40, 38, 40, 37, 37, 39, 39];
+			//up, left, down, right, up, right, down, left, up
+			var dirScript2 = [38, 37, 40, 39, 38, 39, 40, 37, 38];
+			var directionScript = dirScript1;
+
+			var currentDir = 0;
+			var score = 0;
+
+			function playScript(num) {
+					if (num == 1) {
+						directionScript = dirScript1;
+					}
+					if (num == 2) {
+						directionScript = dirScript2;
+					}
+					
+					restartStopwatch();
+					capturing = true;
+					showNext();
+				}
+
+				function getDir(dir) {
+					switch(dir) {
+						case 37:
+							return "LEFT";
+						case 39:
+							return "RIGHT";
+						case 38:
+							return "UP";
+						case 40:
+							return "DOWN";
+						default:
+							return "";
+					}
+				}
+
+				function showNext() {
+					document.getElementById("score").innerHTML = score;
+					
+					if (currentDir >= directionScript.length) {
+						document.getElementById("instruction").innerHTML = "FINISHED";
+						capturing = false;
+						stopStopwatch();
+						return;
+					}
+					var dir = getDir(directionScript[currentDir]);
+					
+					document.getElementById("instruction").innerHTML = dir;
+					
+				}
+
+
+			function processResult(direction) {
+				var result = "❌";
+
+				if (direction == directionScript[currentDir]) {
+					score++;
+					result = "✔️";
+				}
+
+				stopwatchLap(getDir(directionScript[currentDir]), result);
+				currentDir++;
+				showNext();
+			}
+			
+		</script>
+
+    </body>
+</html>
