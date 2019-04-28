@@ -26,6 +26,14 @@ class Stopwatch {
       li.innerText = this.format(times);
       this.results.appendChild(li);
   }
+
+  //+ write down direction + lap + result of the operation
+  lapWithResult(direction, result) {
+    let times = this.times;
+    let li = document.createElement('li');
+    li.innerText = direction + ": " + this.format(times) + " " + result;
+    this.results.appendChild(li);
+  }
   
   stop() {
       this.running = false;

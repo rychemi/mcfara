@@ -13,19 +13,22 @@
 	<body onload="onLoad();">
 		
 		<section style="margin-top: 1em; text-align: center;">
-			
-			<div id="instruction">&nbsp;</div>
+		
+				
+					<button class="button  f15" onclick="begin(1)">start [1]</button>
+					<button style="margin-left: 0.5em; " class="button  f15" onclick="begin(2)">start [2]</button>
+								
+					<table align="center" style="margin-top: 1em;">
+						<td><label for="score">score: </label></td>
+						<td><div id="score" style="text-align:center;">0</div></td>
+					</table>
+					<div class="stopwatch"></div>
+				
+		
 
-			<p>Score: </p><div id="score">&nbsp;</div>
-
-			<div class="stopwatch"></div>
-			
+			<h2><div id="instruction">&nbsp;</div></h2>
 		</section>
 
-			<script src="../../stopwatch.js"></script>
-
-
-	
 		<div class="wrapper">
 				<video id="video" autoplay></video>
 				<div class="motion-box"></div>
@@ -36,10 +39,12 @@
 			<ul class="results"></ul>
 		</section>
 		
-			<section class="sectionReturn" >
-				<button class="button buttonReturn" onclick="location.href='../../mazes.html'">← return</button>
-			</section>
+		<section class="sectionReturn" >
+			<button class="button buttonReturn" onclick="location.href='../../mazes.html'">← return</button>
+		</section>
 
+
+		<script src="../../stopwatch.js"></script>
 		<script>
 		function move(direction) {
 			changeDirection(direction);
@@ -52,18 +57,24 @@
 		function startStopwatch() {
 			stopwatch.start();
 		}	
-		function stopwatchLap() {
-			stopwatch.lap();
+		function stopwatchLap(direction, result) {
+			stopwatch.lapWithResult(direction, result);
 		}
 		function stopStopwatch() {
 			stopwatch.stop();
 		}
+		function restartStopwatch() {
+			stopwatch.restart();
+		}
+
+		function begin(num) {
+			playScript(num);
+		}
 		</script>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="diff-cam-engine.js"></script>
-<script src="dce_echo.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="diff-cam-engine.js"></script>
+		<script src="dce_echo.js"></script>
 
   </body>
 </html>
