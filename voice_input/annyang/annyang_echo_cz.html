@@ -40,19 +40,15 @@
 		<script src="annyang.js"></script>
 		<script>
 		if (annyang) { 
-			// Create commands
+			annyang.setLanguage('cs');
+
 		  var commands = {
-			'hello': function() { alert('Hello!'); },
+			'ahoj': function() { alert('Ahoj!'); },
 			
-			'(go) up': function() { processResult(38); },
-			'(go) left': function() { processResult(37); },
-			'(go) right': function() { processResult(39); },
-			'(go) down': function() { processResult(40); }, 
-			
-			'(move) up': function() { processResult(38); },
-			'(move) left': function() { processResult(37); },
-			'(move) right': function() { processResult(39); },
-			'(move) down': function() { processResult(40); }
+			'(jdi) nahoru': function() { processResult(38); },
+			'(jdi) doleva': function() { processResult(37); },
+			'(jdi) doprava': function() { processResult(39); },
+			'(jdi) dolů': function() { processResult(40); }
 		  };
 		  
 
@@ -116,13 +112,13 @@
 				function getDir(dir) {
 					switch(dir) {
 						case 37:
-							return "LEFT";
+							return "DOLEVA";
 						case 39:
-							return "RIGHT";
+							return "DOPRAVA";
 						case 38:
-							return "UP";
+							return "NAHORU";
 						case 40:
-							return "DOWN";
+							return "DOLŮ";
 						default:
 							return "";
 					}
@@ -132,7 +128,7 @@
 					document.getElementById("score").innerHTML = score;
 					
 					if (currentDir >= directionScript.length) {
-						document.getElementById("instruction").innerHTML = "FINISHED";
+						document.getElementById("instruction").innerHTML = "DOKONČENO";
 						stopStopwatch();
 						return;
 					}
