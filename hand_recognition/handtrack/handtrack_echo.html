@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>handtrack js</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+		<link rel="stylesheet" type="text/css" href="../../style.css" title="style" />
+		<link rel="stylesheet" href="handtrack.css">
+				
+    </head>
+    <body>
+
+	<section>
+		<div id="updatenote" class="loader"> loading model ...</div>
+		<br>
+		<button  id="trackbutton" class="button buttonStart f15" type="button" > Start/Stop Recognition </button>
+	</section>
+
+	<section style="margin-top: 1em; text-align: center;">
+		
+		<button class="button  f15" onclick="playScript(1)">start [1]</button>
+		<button style="margin-left: 0.5em; " class="button  f15" onclick="playScript(2)">start [2]</button>
+					
+		<table align="center" style="margin-top: 1em;">
+			<td><label for="score">score: </label></td>
+			<td><div id="score" style="text-align:center;">0</div></td>
+		</table>
+		<div class="stopwatch"></div>
+
+		<h2><div id="instruction">&nbsp;</div></h2>
+	</section>
+
+	<section>
+		<video class="videobox canvasbox hidden" autoplay="autoplay" id="myvideo"></video>
+		<canvas id="canvas" class="border canvasbox"></canvas>
+	</section>
+	
+	<section>
+		<div id="colorWindow">
+		<ul class="results"></ul>
+		</div>
+	</section>
+		
+   
+	
+	
+	<button class="button buttonReturn" onclick="location.href='../hand_recognition.html'">← return</button>
+
+        <script src="handtrack.min.js"> </script>
+		<script src="echo_tracker.js"></script>
+
+		<!--stopwatch functionality-->
+		<script src="../../stopwatch.js"></script>
+		<script>
+				let stopwatch = new Stopwatch(
+					document.querySelector('.stopwatch'),
+					document.querySelector('.results'));
+					
+				function startStopwatch() {
+					stopwatch.start();
+				}	
+				function stopwatchLap(direction, result) {
+					stopwatch.lapWithResult(direction, result);
+				}
+				function stopStopwatch() {
+					stopwatch.stop();
+				}
+				function restartStopwatch() {
+					stopwatch.restart();
+				}
+		
+		</script>
+
+    </body>
+</html>

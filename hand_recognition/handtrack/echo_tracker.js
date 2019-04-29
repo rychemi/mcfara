@@ -22,6 +22,77 @@ const modelParams = {
     scoreThreshold: 0.6,    // confidence threshold for predictions.
 }
 
+
+//up = 38, down = 40, left = 37, right = 39
+//up, up, down, down, left, right, left, right, up, down, up, down, left, left, right, right
+var dirScript1 = [38, 38, 40, 40, 37, 39, 37, 39, 38, 40, 38, 40, 37, 37, 39, 39];
+//up, left, down, right, up, right, down, left, up
+var dirScript2 = [38, 37, 40, 39, 38, 39, 40, 37, 38];
+var directionScript = dirScript1;
+
+
+var currentDir = 0;
+var score = 0;
+var capturing = false;
+
+
+function playScript(num) {
+	if (num == 1) {
+		directionScript = dirScript1;
+	}
+	if (num == 2) {
+		directionScript = dirScript2;
+	}
+	
+	restartStopwatch();
+	capturing = true;
+	showNext();
+}
+
+function getDir(dir) {
+	switch(dir) {
+		case 37:
+			return "LEFT";
+		case 39:
+			return "RIGHT";
+		case 38:
+			return "UP";
+		case 40:
+			return "DOWN";
+		default:
+			return "";
+	}
+}
+
+function showNext() {
+	document.getElementById("score").innerHTML = score;
+	
+	if (currentDir >= directionScript.length) {
+		document.getElementById("instruction").innerHTML = "FINISHED";
+		capturing = false;
+		stopStopwatch();
+		return;
+	}
+	var dir = getDir(directionScript[currentDir]);
+	
+	document.getElementById("instruction").innerHTML = dir;
+	
+}
+
+function processResult(direction) {
+    var result = "❌";
+
+    if (direction == directionScript[currentDir]) {
+        score++;
+        result = "✔️";
+    }
+
+    stopwatchLap(getDir(directionScript[currentDir]), result);
+    currentDir++;
+    showNext();
+}
+
+
 function startVideo() {
     handTrack.startVideo(video).then(function (status) {
         console.log("video started", status);
@@ -67,19 +138,19 @@ function runDetection() {
 			
 			let direction = false;
 			if (predictions[i].bbox[0] + (predictions[i].bbox[2] / 2) < 125) {
-				if (!pause) notepad.innerHTML += "LEFT ";
+				if (!pause) processResult(37);
 				direction = true;
 			}
 			if (predictions[i].bbox[0] + (predictions[i].bbox[2] / 2) > 450) {
-				if (!pause) notepad.innerHTML += "RIGHT ";
+				if (!pause) processResult(39);
 				direction = true;
 			}
 			if (predictions[i].bbox[1] + (predictions[i].bbox[3] / 2) > 350) {
-				if (!pause) notepad.innerHTML += "DOWN ";
+				if (!pause) processResult(40);
 				direction = true;
 			}
-			if (predictions[i].bbox[1] + (predictions[i].bbox[3] / 2) < 100) {
-				if (!pause) notepad.innerHTML += "UP ";
+			if (predictions[i].bbox[1] + (predictions[i].bbox[3] / 2) < 115) {
+				if (!pause) processResult(38);
 				direction = true;
 			}
 			
