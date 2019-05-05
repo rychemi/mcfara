@@ -12,39 +12,42 @@
     </head>
     <body>
 
-        <section>
-            <div id="colorWindow">
-                <ul>
-                    <li class="box orange">start / turn on</li>
-                    <li class="box blue">go up</li>
-                    <li class="box violet">switch</li>
-                    <li class="box yellow">go back / left</li>
-                    <li class="box black">stop / turn off</li>
-                    <li class="box red">go next / right</li>
-					<li class="box gray">pause / wait</li>
-					<li class="box green">go down</li>
-					<li class="box pink">continue</li>
-                </ul>
-            </div>
-        </section>
-		
-		<section>
-            <button class="button" onclick="restartColor()">click to restart</button>
-        </section>
-		
+        <section style="margin-top:1em">
+			<p><b>Command list: </b>
+				 start, stop, wait, pause, 
+				 up, down, left, right,
+				 go up, go down, go left, go right, 
+				 next, back, previous, continue, 
+				 hide, show, open, close,
+				 turn on, turn off, swap, switch,
+				 zoom in, zoom out</p>
+			<p><b>numbers: </b> number (1, 5, 8, 3.14, 76, 673.26, 1256.5)</p>
+			<div style="margin-top:0.5em; text-align:center;">
+				<button class="button buttonSky f15" onclick="skipCommand()"> skip command </button>
+				<button class="button buttonChoco f15" onclick="restartLog()"> restart log </button>
+			</div>
+
+			<div id="dashedBox">
+				<p style="font-weight: bold; margin-right: 50% "> Phrases catched: </p>
+				<div id="notepad"></div>
+			</div>
+		</section>
+				
 		<section class="sectionReturn">
-            <button class="button buttonReturn" onclick="location.href='../voice_input.html'">← return</button>
-        </section>
+			<button class="button buttonReturn" onclick="location.href='../voice_input.html'">← return</button>
+		</section>
 		
-		<script>
-			// Change color of colorWindow box to default white
-			function restartColor() {
-				document.querySelector('#colorWindow').className = 'white';
+		<script>	
+			function restartLog() {
+				document.getElementById('notepad').innerHTML = " ";
 			}
-			
-			// Change color of colorWindow box
-			function changeColor(newColor) {
-				document.querySelector('#colorWindow').className = newColor;
+
+			function skipCommand() {
+				writeDown("-");
+			}
+
+			function writeDown(phrase) {
+				document.getElementById('notepad').innerHTML += phrase +  "<br />";
 			}
 		</script>
 
@@ -56,38 +59,120 @@
 				});
 				
 				SPEECH.onStop(function() {
-				alert('Goodbye');
+				//alert('Goodbye');
 				});
 		
-				// Add voice commands
 				SPEECH.addVoiceCommands([
 				{
-					command: /(go)?\s?up/,
-					callback: function() { changeColor('blue'); }
+					command: 'hello',
+					callback: function() { alert('Hello!'); }
 				}, {
-					command: /(go)?\s?down/,
-					callback: function() { changeColor('green'); }
+
+					command: 'start',
+					callback: function() { writeDown('start'); }
 				}, {
-					command: /(go)?\s?(next|right)/,
-					callback: function() { changeColor('red'); }
+					command: 'stop',
+					callback: function() { writeDown('stop'); }
 				}, {
-					command: /(go)?\s?(back|left)/,
-					callback: function() { changeColor('yellow'); }
+					command: 'wait',
+					callback: function() { writeDown('wait'); }
 				}, {
-					command: /(start|turn on)/,
-					callback: function() { changeColor('orange'); }
+					command: 'pause',
+					callback: function() { writeDown('pause'); }
 				}, {
-					command: /(stop|turn off)/,
-					callback: function() { changeColor('black'); }
+
+					command: 'up',
+					callback: function() { writeDown('up'); }
 				}, {
-					command: 'switch',
-					callback: function() { changeColor('violet'); }
+					command: 'down',
+					callback: function() { writeDown('down'); }
 				}, {
-					command: /(pause|wait)/,
-					callback: function() { changeColor('gray'); }
+					command: 'left',
+					callback: function() { writeDown('left'); }
+				}, {
+					command: 'right',
+					callback: function() { writeDown('right'); }
+				}, {
+
+					command: 'go up',
+					callback: function() { writeDown('go up'); }
+				}, {
+					command: 'go down',
+					callback: function() { writeDown('go down'); }
+				}, {
+					command: 'go left',
+					callback: function() { writeDown('go left'); }
+				}, {
+					command: 'go right',
+					callback: function() { writeDown('go right'); }
+				}, {
+
+					command: 'hide',
+					callback: function() { writeDown('hide'); }
+				}, {
+					command: 'show',
+					callback: function() { writeDown('show'); }
+				}, {
+					command: 'open',
+					callback: function() { writeDown('open'); }
+				}, {
+					command: 'close',
+					callback: function() { writeDown('close'); }
+				}, {
+
+					command: 'next',
+					callback: function() { writeDown('next'); }
+				}, {
+					command: 'back',
+					callback: function() { writeDown('back'); }
+				}, {
+					command: 'previous',
+					callback: function() { writeDown('previous'); }
 				}, {
 					command: 'continue',
-					callback: function() { changeColor('pink'); }
+					callback: function() { writeDown('continue'); }
+				}, {
+
+					command: 'turn off',
+					callback: function() { writeDown('turn off'); }
+				}, {
+					command: 'turn on',
+					callback: function() { writeDown('turn on'); }
+				}, {
+					command: 'switch',
+					callback: function() { writeDown('swich'); }
+				}, {
+					command: 'swap',
+					callback: function() { writeDown('swap'); }
+				}, {
+
+					command: 'zoom in',
+					callback: function() { writeDown('zoom in'); }
+				}, {
+					command: 'zoom out',
+					callback: function() { writeDown('zoom out'); }
+				}, {
+
+					command: 'number one',
+					callback: function() { writeDown('1'); }
+				}, {
+					command: 'number five',
+					callback: function() { writeDown('5'); }
+				}, {
+					command: 'number eight',
+					callback: function() { writeDown('8'); }
+				}, {
+					command: 'number 3.14',
+					callback: function() { writeDown('3.14'); }
+				}, {
+					command: 'number 76',
+					callback: function() { writeDown('76'); }
+				}, {
+					command: 'number 673.26',
+					callback: function() { writeDown('673.26'); }
+				}, {
+					command: 'number 1256.5',
+					callback: function() { writeDown('1256.5'); }
 				}]);
 		
 				SPEECH.onResult(function(result) {
@@ -99,7 +184,7 @@
 
 				SPEECH.start({
 					min_confidence: .3,
-					lang: 'en-US' // defaults to HTML lang attribute value, or user agent's language
+					lang: 'en-US' 
 				});
 			}
 

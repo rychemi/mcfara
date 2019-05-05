@@ -12,77 +12,166 @@
     </head>
     <body>
 	
-        <section>
-            <div id="colorWindow">
-                <ul>
-                    <li class="box orange">start / zapni</li>
-                    <li class="box blue">nahoru</li>
-                    <li class="box violet">přepni</li>
-                    <li class="box yellow">zpět / doleva</li>
-                    <li class="box black">zastav / vypni</li>
-                    <li class="box red">dál / doprava</li>
-					<li class="box gray">počkej</li>
-					<li class="box green">dolů</li>
-					<li class="box pink">pokračuj</li>
-                </ul>
-            </div>
-        </section>
-		
-		<section>
-            <!-- <h2>click to restart</h2> -->
-            <button class="button" onclick="restartColor()">restartovat barvu</button>
-        </section>
-		
-		<section class="sectionReturn">
-            <button class="button buttonReturn" onclick="location.href='../voice_input.html'">← zpět</button>
-        </section>
-		
-		<script>
-			// Change color of colorWindow box to default white
-			function restartColor() {
-				document.querySelector('#colorWindow').className = 'white';
-			}
+        <section style="margin-top:1em">
+			<p><b>Seznam příkazů: </b>
+				zapni, vypni, počkej, pokračuj, 
+				nahoru, dolů, doleva, doprava,
+				posuň nahoru, posuň dolů, posuň doleva, posuň doprava,
+				dál, zpět, zpátky, předchozí, další,
+				skryj, ukaž, zobraz, otevři, zavři,
+				vyměň, přepni, přibliž, oddal</p>
+			<p><b>čísla: </b> napiš (1, 5, 8, 3.14, 76, 673.26, 1256.5)</p>
+			<div style="margin-top:0.5em; text-align:center;">
+				<button class="button buttonSky f15" onclick="skipCommand()"> přeskočit příkaz </button>
+				<button class="button buttonChoco f15" onclick="restartLog()"> restartovat záznamy </button>
+			</div>
+
+			<div id="dashedBox">
+				<p style="font-weight: bold; margin-right: 50% "> Zachycené fráze: </p>
+				<div id="notepad"></div>
+			</div>
+		</section>
 			
-			// Change color of colorWindow box
-			function changeColor(newColor) {
-				document.querySelector('#colorWindow').className = newColor;
+		<section class="sectionReturn">
+			<button class="button buttonReturn" onclick="location.href='../voice_input.html'">← return</button>
+		</section>
+	
+		<script>	
+			function restartLog() {
+				document.getElementById('notepad').innerHTML = " ";
+			}
+
+			function skipCommand() {
+				writeDown("-");
+			}
+
+			function writeDown(phrase) {
+				document.getElementById('notepad').innerHTML += phrase +  "<br />";
 			}
 		</script>
 
         <script src="voice-commands.js"></script>
-		
-		
         <script>
 			if ( SPEECH.isCapable() ) { // the browser supports speech recognition
+				SPEECH.onStart(function() {
+				//alert('Hello, let\'s start!');
+				});
+				
+				SPEECH.onStop(function() {
+				//alert('Goodbye');
+				});
 		
 				SPEECH.addVoiceCommands([
 				{
-					command: /(jdi nahoru|nahoru)/,
-					callback: function() { changeColor('blue'); }
+					command: 'ahoj',
+					callback: function() { alert('Ahoj!'); }
 				}, {
-					command: /(jdi)?\s?dolů/,
-					callback: function() { changeColor('green'); }
+
+					command: 'zapni',
+					callback: function() { writeDown('zapni'); }
 				}, {
-					command: /(jdi)?\s?(dál|doprava)/,
-					callback: function() { changeColor('red'); }
-				}, {
-					command: /(jdi)?\s?(zpět|zpátky|doleva)/,
-					callback: function() { changeColor('yellow'); }
-				}, {
-					command: /(start|zapni)\s?(se)?/,
-					callback: function() { changeColor('orange'); }
-				}, {
-					command: /(zastav|vypni)\s?(se)?/,
-					callback: function() { changeColor('black'); }
-				}, {
-					command: /přepni\s?(se)?/,
-					callback: function() { changeColor('violet'); }
+					command: 'vypni',
+					callback: function() { writeDown('vypni'); }
 				}, {
 					command: 'počkej',
-					callback: function() { changeColor('gray'); }
+					callback: function() { writeDown('počkej'); }
 				}, {
 					command: 'pokračuj',
-					callback: function() { changeColor('pink'); }
+					callback: function() { writeDown('pokračuj'); }
+				}, {
+
+					command: 'nahoru',
+					callback: function() { writeDown('nahoru'); }
+				}, {
+					command: 'dolů',
+					callback: function() { writeDown('dolů'); }
+				}, {
+					command: 'doleva',
+					callback: function() { writeDown('doleva'); }
+				}, {
+					command: 'doprava',
+					callback: function() { writeDown('doprava'); }
+				}, {
+
+					command: 'posuň nahoru',
+					callback: function() { writeDown('posuň nahoru'); }
+				}, {
+					command: 'posuň dolů',
+					callback: function() { writeDown('posuň dolů'); }
+				}, {
+					command: 'posuň doleva',
+					callback: function() { writeDown('posuň doleva'); }
+				}, {
+					command: 'posuň doprava',
+					callback: function() { writeDown('posuň doprava'); }
+				}, {
+
+					command: 'skryj',
+					callback: function() { writeDown('skryj'); }
+				}, {
+					command: 'ukaž',
+					callback: function() { writeDown('ukaž'); }
+				}, {
+					command: 'zobraz',
+					callback: function() { writeDown('zobraz'); }
+				}, {
+					command: 'otevři',
+					callback: function() { writeDown('otevři'); }
+				}, {
+					command: 'zavři',
+					callback: function() { writeDown('zavři'); }
+				}, {
+
+					command: 'zpět',
+					callback: function() { writeDown('zpět'); }
+				}, {
+					command: 'zpátky',
+					callback: function() { writeDown('zpátky'); }
+				}, {
+					command: 'další',
+					callback: function() { writeDown('další'); }
+				}, {
+					command: 'předchozí',
+					callback: function() { writeDown('předchozí'); }
+				}, {
+					command: 'dál',
+					callback: function() { writeDown('dál'); }
+				}, {
+
+					
+					command: 'vyměň',
+					callback: function() { writeDown('vyměň'); }
+				}, {
+					command: 'přepni',
+					callback: function() { writeDown('přepni'); }
+				}, {
+					command: 'přibliž',
+					callback: function() { writeDown('přibliž'); }
+				}, {
+					command: 'oddal',
+					callback: function() { writeDown('oddal'); }
+				}, {
+
+					command: 'napiš one',
+					callback: function() { writeDown('1'); }
+				}, {
+					command: 'napiš five',
+					callback: function() { writeDown('5'); }
+				}, {
+					command: 'napiš eight',
+					callback: function() { writeDown('8'); }
+				}, {
+					command: 'napiš 3.14',
+					callback: function() { writeDown('3.14'); }
+				}, {
+					command: 'napiš 76',
+					callback: function() { writeDown('76'); }
+				}, {
+					command: 'napiš 673.26',
+					callback: function() { writeDown('673.26'); }
+				}, {
+					command: 'napiš 1256.5',
+					callback: function() { writeDown('1256.5'); }
 				}]);
 		
 				SPEECH.onResult(function(result) {
@@ -94,7 +183,7 @@
 
 				SPEECH.start({
 					min_confidence: .3,
-					lang: 'cs'
+					lang: 'cs' 
 				});
 			}
 

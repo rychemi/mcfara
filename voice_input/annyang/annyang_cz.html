@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>annyang js - cz</title>
+        <title>annyang cz</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
 
@@ -11,77 +11,92 @@
 		
     </head>
     <body>
-		
-        <section>
-            <div id="colorWindow">
-                <ul>
-                    <li class="box orange">start / zapni</li>
-                    <li class="box blue">nahoru</li>
-                    <li class="box violet">přepni</li>
-                    <li class="box yellow">zpět / doleva</li>
-                    <li class="box black">zastav / vypni</li>
-                    <li class="box red">dál / doprava</li>
-					<li class="box gray">počkej</li>
-					<li class="box green">dolů</li>
-					<li class="box pink">pokračuj</li>
-                </ul>
-            </div>
-        </section>
-		
-		<section>
-            <!-- <h2>click to restart</h2> -->
-            <button class="button" onclick="restartColor()">restartovat barvu</button>
-        </section>
-		
-		<section class="sectionReturn">
-            <button class="button buttonReturn" onclick="location.href='../voice_input.html'">← zpět</button>
-        </section>
-		
-		<script>
-			// Change color of colorWindow box to default white
-			function restartColor() {
-				document.querySelector('#colorWindow').className = 'white';
-			}
 			
-			// Change color of colorWindow box
-			function changeColor(newColor) {
-				document.querySelector('#colorWindow').className = newColor;
+			<section style="margin-top:1em">
+				<p><b>Seznam příkazů: </b>
+					zapni, vypni, počkej, pokračuj, 
+					nahoru, dolů, doleva, doprava,
+					posuň nahoru, posuň dolů, posuň doleva, posuň doprava,
+					dál, zpět, zpátky, předchozí, další,
+					skryj, ukaž, zobraz, otevři, zavři,
+					vyměň, přepni, přibliž, oddal</p>
+				<p><b>čísla: </b> napiš (1, 5, 8, 3.14, 76, 673.26, 1256.5)</p>
+				<div style="margin-top:0.5em; text-align:center;">
+					<button class="button buttonSky f15" onclick="skipCommand()"> přeskočit příkaz </button>
+					<button class="button buttonChoco f15" onclick="restartLog()"> restartovat záznamy </button>
+				</div>
+
+				<div id="dashedBox">
+					<p style="font-weight: bold; margin-right: 50% "> Zachycené fráze: </p>
+					<div id="notepad"></div>
+				</div>
+			</section>
+				
+		<section class="sectionReturn">
+            <button class="button buttonReturn" onclick="location.href='../voice_input.html'">← return</button>
+    </section>
+		
+		<script>	
+			function restartLog() {
+				document.getElementById('notepad').innerHTML = " ";
+			}
+
+			function skipCommand() {
+				writeDown("-");
+			}
+
+			function writeDown(phrase) {
+				document.getElementById('notepad').innerHTML += phrase +  "<br />";
 			}
 		</script>
 
-	<script src="annyang.js"></script>
-	<script>
-	if (annyang) {
-		// Set Czech language
-		annyang.setLanguage('cs');
-	
-		var commands = {
-			'ahoj': function() { alert('Ahoj!'); },
-	
-			'start': function() { changeColor('orange'); },
-			'zapni (se)': function() { changeColor('orange'); },
-			'(jdi) nahoru': function() { changeColor('blue'); },
-			'přepni (se)': function() { changeColor('violet'); },
-			'(jdi) zpět': function() { changeColor('yellow'); },
-			'(jdi) zpátky': function() { changeColor('yellow'); },
-			'(jdi) doleva': function() { changeColor('yellow'); },
-			'zastav': function() { changeColor('black'); },
-			'vypni (se)': function() { changeColor('black'); },
-			'(jdi) dál': function() { changeColor('red'); },
-			'(jdi) doprava': function() { changeColor('red'); },
-			'počkej': function() { changeColor('gray'); },
-			'(jdi) dolů': function() { changeColor('green'); },
-			'pokračuj': function() { changeColor('pink'); }
-		};
-  
+		<script src="annyang.js"></script>
+		<script>
+		if (annyang) { 
+			annyang.setLanguage('cs');
 
-		// Add our commands to annyang
-		annyang.addCommands(commands);
+		  var commands = {			
+				'ahoj': function() { alert('Ahoj!'); },
 
-		// Start listening.
-		annyang.start();
-	}
-	</script>
+				'zapni': function() { writeDown('zapni'); },
+				'vypni': function() { writeDown('vypni'); },
+				'počkej': function() { writeDown('počkej'); },
+				'pokračuj': function() { writeDown('pokračuj'); },			
+
+				'zavři': function() { writeDown('zavři'); },
+				'otevři': function() { writeDown('otevři'); },
+				'skryj': function() { writeDown('skryj'); },
+				'zobraz': function() { writeDown('zobraz'); },
+				'ukaž': function() { writeDown('ukaž'); },
+
+				'posuň nahoru': function() { writeDown('posuň nahoru'); },
+				'nahoru': function() { writeDown('nahoru'); },
+				'posuň dolů': function() { writeDown('posuň dolů'); },
+				'dolů': function() { writeDown('dolů'); },
+				'posuň doleva': function() { writeDown('posuň doleva'); },
+				'doleva': function() { writeDown('doleva'); },
+				'posuň doprava': function() { writeDown('posuň doprava'); },
+				'doprava': function() { writeDown('doprava'); },
+				
+				'dál': function() { writeDown('dál'); },
+				'zpět': function() { writeDown('zpět'); },
+				'zpátky': function() { writeDown('zpátky'); },
+				'další': function() { writeDown('další'); },
+				'předchozí': function() { writeDown('předchozí'); },
+
+				'vyměň': function() { writeDown('vyměň'); },
+				'přepni': function() { writeDown('přepni'); },
+				'přibliž': function() { writeDown('přibliž'); },
+				'oddal': function() { writeDown('oddal'); },
+
+				'napiš :num': function(num) { writeDown(num); }
+		  };
+		  
+		  annyang.addCommands(commands);
+
+		  annyang.start();
+		}
+		</script>
 
     </body>
 </html>

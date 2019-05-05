@@ -14,121 +14,169 @@
 
         <section>
             <h2>click to activate microphone</h2>
-            <button id="en" class="button buttonStart">START</button>
+            <button id="listener" class="button buttonStart">START</button>
+            <h2>hold "v" key and say command</h2>
         </section>
 
-        <section>
-            <h2>press "v" key and pick a command</h2>
-            <div id="colorWindow">
-                <ul>
-                    <li class="box orange">start / turn on</li>
-                    <li class="box blue">go up</li>
-                    <li class="box violet">switch</li>
-                    <li class="box yellow">go back / left</li>
-                    <li class="box black">stop / turn off</li>
-                    <li class="box red">go next / right</li>
-					<li class="box gray">pause / wait</li>
-					<li class="box green">go down</li>
-					<li class="box pink">continue</li>
-                </ul>
-            </div>
-        </section>
-		
-		<section>
-            <button class="button" onclick="restartColor()">click to restart</button>
-        </section>
-		
+        <section style="margin-top:1em">
+			<p><b>Command list: </b>
+				 start, stop, wait, pause, 
+				 up, down, left, right,
+				 go up, go down, go left, go right, 
+				 next, back, previous, continue, 
+				 hide, show, open, close,
+				 turn on, turn off, swap, switch,
+				 zoom in, zoom out</p>
+			<p><b>numbers: </b> number (1, 5, 8, 3.14, 76, 673.26, 1256.5)</p>
+			<div style="margin-top:0.5em; text-align:center;">
+				<button class="button buttonSky f15" onclick="skipCommand()"> skip command </button>
+				<button class="button buttonChoco f15" onclick="restartLog()"> restart log </button>
+			</div>
+
+			<div id="dashedBox">
+				<p style="font-weight: bold; margin-right: 50% "> Phrases catched: </p>
+				<div id="notepad"></div>
+			</div>
+		</section>
+				
 		<section class="sectionReturn">
-            <button class="button buttonReturn" onclick="location.href='../voice_input.html'">← return</button>
-        </section>
+			<button class="button buttonReturn" onclick="location.href='../voice_input.html'">← return</button>
+		</section>
 		
-		<script>
-			// Change color of colorWindow box to default white
-			function restartColor() {
-				document.querySelector('#colorWindow').className = 'white';
+		<script>	
+			function restartLog() {
+				document.getElementById('notepad').innerHTML = " ";
 			}
-			
-			// Change color of colorWindow box
-			function changeColor(newColor) {
-				document.querySelector('#colorWindow').className = newColor;
+
+			function skipCommand() {
+				writeDown("-");
+			}
+
+			function writeDown(phrase) {
+				document.getElementById('notepad').innerHTML += phrase +  "<br />";
 			}
 		</script>
 
         <script src="voix.js"></script>
         <script>
-            document.querySelector('#en').addEventListener('click', english);
+            document.querySelector('#listener').addEventListener('click', listen);
 
-            function english() {
+            function listen() {
                 var voix = new Voix('en-US');
 
                 voix
 					.setCommand('hello', function() {
-                        alert('Hello world!');
+                        alert('Hello!');
                     })
 					
-					.setCommand('go next', function () {
-                        changeColor('red');
-                    })
-					.setCommand('next', function () {
-                        changeColor('red');
-                    })
-					.setCommand('go right', function () {
-                        changeColor('red');
-                    })
-					.setCommand('right', function () {
-                        changeColor('red');
-                    })
-                    .setCommand('go up', function () {
-                        changeColor('blue');
-                    })
-					.setCommand('up', function () {
-                        changeColor('blue');
-                    })
-                    .setCommand('go back', function () {
-                        changeColor('yellow');
-                    })
-					.setCommand('back', function () {
-                        changeColor('yellow');
-                    })
-					.setCommand('go left', function () {
-                        changeColor('yellow');
-                    })
-					.setCommand('left', function () {
-                        changeColor('yellow');
-                    })
-                    .setCommand('go down', function () {
-                        changeColor('green');
-                    })
-					.setCommand('down', function () {
-                        changeColor('green');
-                    })
-                    .setCommand('switch', function () {
-                        changeColor('violet');
-                    })
-                    .setCommand('start', function () {
-                        changeColor('orange');
-                    })
-					.setCommand('turn on', function () {
-                        changeColor('orange');
-                    })
-					.setCommand('continue', function () {
-                        changeColor('pink');
-                    })
-					.setCommand('pause', function () {
-                        changeColor('gray');
-                    })
-					.setCommand('wait', function () {
-                        changeColor('gray');
+					.setCommand('start', function () {
+                        writeDown('start');
                     })
 					.setCommand('stop', function () {
-                        changeColor('black');
+                        writeDown('stop');
+                    })
+					.setCommand('wait', function () {
+                        writeDown('wait');
+                    })  
+                    .setCommand('pause', function () {
+                        writeDown('pause');
+                    })     
+
+                    .setCommand('up', function () {
+                        writeDown('up');
+                    })
+					.setCommand('down', function () {
+                        writeDown('down');
+                    })
+					.setCommand('left', function () {
+                        writeDown('left');
+                    })  
+                    .setCommand('right', function () {
+                        writeDown('right');
+                    })  
+
+                    .setCommand('go up', function () {
+                        writeDown('go up');
+                    })
+					.setCommand('go down', function () {
+                        writeDown('go down');
+                    })
+					.setCommand('go left', function () {
+                        writeDown('go left');
+                    })  
+                    .setCommand('go right', function () {
+                        writeDown('go right');
+                    })     
+
+                    .setCommand('close', function () {
+                        writeDown('close');
+                    })
+					.setCommand('open', function () {
+                        writeDown('open');
+                    })
+					.setCommand('show', function () {
+                        writeDown('show');
+                    })  
+                    .setCommand('hide', function () {
+                        writeDown('hide');
+                    }) 
+
+                    .setCommand('next', function () {
+                        writeDown('next');
+                    })
+					.setCommand('back', function () {
+                        writeDown('back');
+                    })
+					.setCommand('previous', function () {
+                        writeDown('previous');
+                    })  
+                    .setCommand('continue', function () {
+                        writeDown('continue');
+                    }) 
+
+                    .setCommand('turn on', function () {
+                        writeDown('turn on');
                     })
 					.setCommand('turn off', function () {
-                        changeColor('black');
+                        writeDown('turn off');
+                    })
+					.setCommand('switch', function () {
+                        writeDown('switch');
+                    })  
+                    .setCommand('swap', function () {
+                        writeDown('swap');
+                    })
+
+                    .setCommand('zoom in', function () {
+                        writeDown('zoom in');
+                    })  
+                    .setCommand('zoom out', function () {
+                        writeDown('zoom out');
+                    })
+                                 
+                    .setCommand('number 1', function () {
+                        writeDown('1');
+                    })  
+                    .setCommand('number five', function () {
+                        writeDown('5');
+                    })
+                    .setCommand('number eight', function () {
+                        writeDown('8');
+                    })
+                    .setCommand('number 3.14', function () {
+                        writeDown('3.14');
+                    })
+					.setCommand('number 76', function () {
+                        writeDown('76');
+                    })
+					.setCommand('number 673.26', function () {
+                        writeDown('673.26');
+                    })
+                    .setCommand('number 1256.5', function () {
+                        writeDown('1256.5');
                     });
             }
 			
-			// Start listening
 			voix.start();
 
         </script>

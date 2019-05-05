@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>annyang js</title>
+        <title>annyang en</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
 
@@ -11,39 +11,43 @@
 		
     </head>
     <body>
-        <section>
-            <div id="colorWindow">
-                <ul>
-                    <li class="box orange">start / turn on</li>
-                    <li class="box blue">go up</li>
-                    <li class="box violet">switch</li>
-                    <li class="box yellow">go back / left</li>
-                    <li class="box black">stop / turn off</li>
-                    <li class="box red">go next / right</li>
-										<li class="box gray">pause / wait</li>
-										<li class="box green">go down</li>
-										<li class="box pink">continue</li>
-                </ul>
-            </div>
-        </section>
-		
-		<section>
-            <button class="button" onclick="restartColor()">click to restart</button>
-        </section>
-		
+			
+			<section style="margin-top:1em">
+				<p><b>Command list: </b>
+					 start, stop, wait, pause, 
+					 up, down, left, right,
+					 go up, go down, go left, go right, 
+					 next, back, previous, continue, 
+					 hide, show, open, close,
+					 turn on, turn off, swap, switch,
+					 zoom in, zoom out</p>
+				<p><b>numbers: </b> number (1, 5, 8, 3.14, 76, 673.26, 1256.5)</p>
+				<div style="margin-top:0.5em; text-align:center;">
+					<button class="button buttonSky f15" onclick="skipCommand()"> skip command </button>
+					<button class="button buttonChoco f15" onclick="restartLog()"> restart log </button>
+				</div>
+
+				<div id="dashedBox">
+					<p style="font-weight: bold; margin-right: 50% "> Phrases catched: </p>
+					<div id="notepad"></div>
+				</div>
+			</section>
+					
 		<section class="sectionReturn">
             <button class="button buttonReturn" onclick="location.href='../voice_input.html'">← return</button>
-        </section>
+    </section>
 		
-		<script>
-			// Change color of colorWindow box to default white
-			function restartColor() {
-				document.querySelector('#colorWindow').className = 'white';
+		<script>	
+			function restartLog() {
+				document.getElementById('notepad').innerHTML = " ";
 			}
-			
-			// Change color of colorWindow box
-			function changeColor(newColor) {
-				document.querySelector('#colorWindow').className = newColor;
+
+			function skipCommand() {
+				writeDown("-");
+			}
+
+			function writeDown(phrase) {
+				document.getElementById('notepad').innerHTML += phrase +  "<br />";
 			}
 		</script>
 
@@ -52,22 +56,42 @@
 		if (annyang) { 
 			// Create commands
 		  var commands = {
-			'hello': function() { alert('Hello!'); },
-			
-			'start': function() { changeColor('orange'); },
-			'turn on': function() { changeColor('orange'); },
-			'(go) up': function() { changeColor('blue'); },
-			'switch': function() { changeColor('violet'); },
-			'(go) back': function() { changeColor('yellow'); },
-			'(go) left': function() { changeColor('yellow'); },
-			'stop': function() { changeColor('black'); },
-			'(turn) off': function() { changeColor('black'); },
-			'(go) next': function() { changeColor('red'); },
-			'(go) right': function() { changeColor('red'); },
-			'pause': function() { changeColor('gray'); },
-			'wait': function() { changeColor('gray'); },
-			'(go) down': function() { changeColor('green'); },
-			'continue': function() { changeColor('pink'); }
+				'hello': function() { alert('Hello!'); },
+				
+				'start': function() { writeDown('start'); },
+				'stop': function() { writeDown('stop'); },
+				'pause': function() { writeDown('pause'); },
+				'wait': function() { writeDown('wait'); },		
+
+				'close': function() { writeDown('close'); },
+				'open': function() { writeDown('open'); },
+				'hide': function() { writeDown('hide'); },
+				'show': function() { writeDown('show'); },
+
+				'up': function() { writeDown('up'); },
+				'down': function() { writeDown('down'); },
+				'left': function() { writeDown('left'); },
+				'right': function() { writeDown('right'); },
+
+				'go up': function() { writeDown('go up'); },
+				'go down': function() { writeDown('go down'); },
+				'go left': function() { writeDown('go left'); },
+				'go right': function() { writeDown('go right'); },
+				
+				'previous': function() { writeDown('previous'); },
+				'continue': function() { writeDown('continue'); },
+				'back': function() { writeDown('back'); },
+				'next': function() { writeDown('next'); },
+
+				'switch': function() { writeDown('switch'); },
+				'swap': function() { writeDown('swap'); },
+				'turn on': function() { writeDown('turn on'); },
+				'turn off': function() { writeDown('turn off'); },
+
+				'zooom in': function() { writeDown('zoom in'); },
+				'zoom out': function() { writeDown('zoom out'); },
+				
+				'number :num': function(num) { writeDown(num); }
 		  };
 		  
 

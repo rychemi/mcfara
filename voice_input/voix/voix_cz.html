@@ -15,43 +15,44 @@
         <section>
             <h2>aktivace mikrofonu</h2>
             <button id="starter" class="button buttonStart">START</button>
+            <h2>podrž "v" klávesu a řekni příkaz</h2>
         </section>
 
-        <section>
-            <h2>podrž "v" klávesu a řekni příkaz</h2>
-            <div id="colorWindow">
-                <ul>
-                    <li class="box orange">start / zapni</li>
-                    <li class="box blue">nahoru</li>
-                    <li class="box violet">přepni</li>
-                    <li class="box yellow">zpět / doleva</li>
-                    <li class="box black">zastav / vypni</li>
-                    <li class="box red">dál / doprava</li>
-					<li class="box gray">počkej</li>
-					<li class="box green">dolů</li>
-					<li class="box pink">pokračuj</li>
-                </ul>
-            </div>
-        </section>
-		
-		<section>
-            <!-- <h2>click to restart</h2> -->
-            <button class="button" onclick="restartColor()">restartovat barvu</button>
-        </section>
-		
-		<section class="sectionReturn">
-            <button class="button buttonReturn" onclick="location.href='../voice_input.html'">← zpět</button>
-        </section>
-		
-		<script>
-			// Change color of colorWindow box to default white
-			function restartColor() {
-				document.querySelector('#colorWindow').className = 'white';
-			}
+        <section style="margin-top:1em">
+			<p><b>Seznam příkazů: </b>
+				zapni, vypni, počkej, pokračuj, 
+				nahoru, dolů, doleva, doprava,
+				posuň nahoru, posuň dolů, posuň doleva, posuň doprava,
+				dál, zpět, zpátky, předchozí, další,
+				skryj, ukaž, zobraz, otevři, zavři,
+				vyměň, přepni, přibliž, oddal</p>
+			<p><b>čísla: </b> napiš (1, 5, 8, 3.14, 76, 673.26, 1256.5)</p>
+			<div style="margin-top:0.5em; text-align:center;">
+				<button class="button buttonSky f15" onclick="skipCommand()"> přeskočit příkaz </button>
+				<button class="button buttonChoco f15" onclick="restartLog()"> restartovat záznamy </button>
+			</div>
+
+			<div id="dashedBox">
+				<p style="font-weight: bold; margin-right: 50% "> Zachycené fráze: </p>
+				<div id="notepad"></div>
+			</div>
+		</section>
 			
-			// Change color of colorWindow box
-			function changeColor(newColor) {
-				document.querySelector('#colorWindow').className = newColor;
+		<section class="sectionReturn">
+			<button class="button buttonReturn" onclick="location.href='../voice_input.html'">← return</button>
+		</section>
+	
+		<script>	
+			function restartLog() {
+				document.getElementById('notepad').innerHTML = " ";
+			}
+
+			function skipCommand() {
+				writeDown("-");
+			}
+
+			function writeDown(phrase) {
+				document.getElementById('notepad').innerHTML += phrase +  "<br />";
 			}
 		</script>
 
@@ -60,39 +61,118 @@
             document.querySelector('#starter').addEventListener('click', listen);
 
             function listen() {
-				// Initialize voix class with desired language
                 var voix = new Voix('cs');
 
-				// Create and add new commands
                 voix
 					.setCommand('ahoj', function() {
                         alert('Ahoj!');
                     })
 					
-                    .setCommand('jdi dál', function () { changeColor('red'); })
-					.setCommand('dál', function () { changeColor('red'); })
-					.setCommand('jdi doprava', function () { changeColor('red'); })
-					.setCommand('doprava', function () { changeColor('red'); })
-                    .setCommand('jdi nahoru', function () { changeColor('blue'); })
-					.setCommand('nahoru', function () { changeColor('blue'); })
-                    .setCommand('jdi zpět', function () { changeColor('yellow'); })
-					.setCommand('zpět', function () { changeColor('yellow'); })
-					.setCommand('jdi zpátky', function () { changeColor('yellow'); })
-					.setCommand('zpátky', function () { changeColor('yellow'); })})
-					.setCommand('jdi doleva', function () { changeColor('yellow'); })
-					.setCommand('doleva', function () { changeColor('yellow'); })
-                    .setCommand('jdi dolů', function () { changeColor('green'); })
-					.setCommand('dolů', function () { changeColor('green'); })
-                    .setCommand('přepni', function () { changeColor('violet'); })
-                    .setCommand('start', function () { changeColor('orange'); })
-					.setCommand('zapni', function () { changeColor('orange'); })
-					.setCommand('zapni se', function () { changeColor('oraneg'); })
-					.setCommand('pokračuj', function () { changeColor('pink'); })
-					.setCommand('počkej', function () { changeColor('gray'); })
-					.setCommand('přepni', function () { changeColor('violet'); })
-					.setCommand('zastav', function () { changeColor('black'); })
-					.setCommand('vypni', function () { changeColor('black'); })
-					.setCommand('vypni se', function () { changeColor('black'); });
+                    .setCommand('zapni', function () {
+                        writeDown('zapni');
+                    })
+					.setCommand('vypni', function () {
+                        writeDown('vypni');
+                    })
+					.setCommand('počkej', function () {
+                        writeDown('počkej');
+                    })  
+                    .setCommand('pokračuj', function () {
+                        writeDown('pokračuj');
+                    })     
+
+                    .setCommand('nahoru', function () {
+                        writeDown('nahoru');
+                    })
+					.setCommand('dolů', function () {
+                        writeDown('dolů');
+                    })
+					.setCommand('doleva', function () {
+                        writeDown('doleva');
+                    })  
+                    .setCommand('doprava', function () {
+                        writeDown('doprava');
+                    })  
+
+                    .setCommand('posuň nahoru', function () {
+                        writeDown('posuň nahoru');
+                    })
+					.setCommand('posuň dolů', function () {
+                        writeDown('posuň dolů');
+                    })
+					.setCommand('posuň doleva', function () {
+                        writeDown('posuň doleva');
+                    })  
+                    .setCommand('posuň doprava', function () {
+                        writeDown('posuň doprava');
+                    })       
+
+                    .setCommand('zavři', function () {
+                        writeDown('zavři');
+                    })
+					.setCommand('otevři', function () {
+                        writeDown('otevři');
+                    })
+					.setCommand('ukaž', function () {
+                        writeDown('ukaž');
+                    }) 
+                    .setCommand('zobraz', function () {
+                        writeDown('zobraz');
+                    })  
+                    .setCommand('skyrj', function () {
+                        writeDown('skryj');
+                    }) 
+
+                    .setCommand('dál', function () {
+                        writeDown('dál');
+                    })
+                    .setCommand('další', function () {
+                        writeDown('další');
+                    })
+					.setCommand('zpět', function () {
+                        writeDown('zpět');
+                    })
+					.setCommand('předchozí', function () {
+                        writeDown('předchozí');
+                    })  
+                    .setCommand('zpátky', function () {
+                        writeDown('zpátky');
+                    }) 
+
+					.setCommand('vyměň', function () {
+                        writeDown('vyměň');
+                    })  
+                    .setCommand('přepni', function () {
+                        writeDown('přepni');
+                    })
+                    .setCommand('přibliž', function () {
+                        writeDown('přibliž');
+                    })  
+                    .setCommand('oddal', function () {
+                        writeDown('oddal');
+                    })
+                                 
+                    .setCommand('napiš 1', function () {
+                        writeDown('1');
+                    })  
+                    .setCommand('napiš five', function () {
+                        writeDown('5');
+                    })
+                    .setCommand('napiš eight', function () {
+                        writeDown('8');
+                    })
+                    .setCommand('napiš 3.14', function () {
+                        writeDown('3.14');
+                    })
+					.setCommand('napiš 76', function () {
+                        writeDown('76');
+                    })
+					.setCommand('napiš 673.26', function () {
+                        writeDown('673.26');
+                    })
+                    .setCommand('napiš 1256.5', function () {
+                        writeDown('1256.5');
+                    });
             }
 
         </script>

@@ -13,96 +13,200 @@
     </head>
     <body>
 
-        <section>
-            <div id="colorWindow">
-                <ul>
-                    <li class="box orange">start / zapni</li>
-                    <li class="box blue">nahoru</li>
-                    <li class="box violet">přepni</li>
-                    <li class="box yellow">zpět / doleva</li>
-                    <li class="box black">zastav / vypni</li>
-                    <li class="box red">dál / doprava</li>
-					<li class="box gray">počkej</li>
-					<li class="box green">dolů</li>
-					<li class="box pink">pokračuj</li>
-                </ul>
-            </div>
-        </section>
-		
-		<section>
-            <button class="button" onclick="restartColor()">restartovat barvu</button>
-        </section>
-		
-		<section class="sectionReturn">
-            <button class="button buttonReturn" onclick="location.href='../voice_input.html'">← zpět</button>
-        </section>
-		
-		<script>
-			// Change color of colorWindow box to default white
-			function restartColor() {
-				document.querySelector('#colorWindow').className = 'white';
-			}
+        <section style="margin-top:1em">
+			<p><b>Seznam příkazů: </b>
+				zapni, vypni, počkej, pokračuj, 
+				nahoru, dolů, doleva, doprava,
+				posuň nahoru, posuň dolů, posuň doleva, posuň doprava,
+				dál, zpět, zpátky, předchozí, další,
+				skryj, ukaž, zobraz, otevři, zavři,
+				vyměň, přepni, přibliž, oddal</p>
+			<p><b>čísla: </b> napiš (1, 5, 8, 3.14, 76, 673.26, 1256.5)</p>
+			<div style="margin-top:0.5em; text-align:center;">
+				<button class="button buttonSky f15" onclick="skipCommand()"> přeskočit příkaz </button>
+				<button class="button buttonChoco f15" onclick="restartLog()"> restartovat záznamy </button>
+			</div>
+
+			<div id="dashedBox">
+				<p style="font-weight: bold; margin-right: 50% "> Zachycené fráze: </p>
+				<div id="notepad"></div>
+			</div>
+		</section>
 			
-			// Change color of colorWindow box
-			function changeColor(newColor) {
-				document.querySelector('#colorWindow').className = newColor;
+		<section class="sectionReturn">
+			<button class="button buttonReturn" onclick="location.href='../voice_input.html'">← return</button>
+		</section>
+	
+		<script>	
+			function restartLog() {
+				document.getElementById('notepad').innerHTML = " ";
+			}
+
+			function skipCommand() {
+				writeDown("-");
+			}
+
+			function writeDown(phrase) {
+				document.getElementById('notepad').innerHTML += phrase +  "<br />";
 			}
 		</script>
 		
 		
 		<script>
-			// Create mumble class with commands 
+
 			var mumble = new Mumble({
 				language: 'cs',
-				debug: true, // set to true to get some detailed information about what's going on
+				debug: false,
 
 				commands: [{
-					name: 'ahoj',
+					name: 'hello',
 					command: 'ahoj',
 					action: function() {
 						alert("Ahoj!");
 					}
-				},
-				{
-					name: 'up',
-					command: /(nahoru|jdi nahoru)/,
-					action: function() { changeColor('blue'); }
-				}, {
-					name: 'down',
-					command: /(jdi)?\s?dolů/,
-					action: function() { changeColor('green'); }
-				}, {
-					name: 'next',
-					command: /(jdi)?\s?(dál|doprava)/,
-					action: function() { changeColor('red'); }
-				}, {
-					name: 'back',
-					command: /(jdi)?\s?(zpět|zpátky|doleva)/,
-					action: function() { changeColor('yellow'); }
 				}, {
 					name: 'start',
-					command: /(start|zapni\s?(se)?)/,
-					action: function() { changeColor('orange'); }
+					command: 'zapni',
+					action: function() { writeDown('zapni'); }
 				}, {
 					name: 'stop',
-					command: /(zastav|vypni\s?(se)?)/,
-					action: function() { changeColor('black'); }
-				}, {
-					name: 'switch',
-					command: /přepni\s?(se)?/,
-					action: function() { changeColor('violet'); }
+					command: 'vypni',
+					action: function() { writeDown('vypni'); }
 				}, {
 					name: 'pause',
 					command: 'počkej',
-					action: function() { changeColor('gray'); }
+					action: function() { writeDown('počkej'); }
 				}, {
 					name: 'continue',
 					command: 'pokračuj',
-					action: function() { changeColor('pink'); }
-				}]
-			});
+					action: function() { writeDown('pokračuj'); }
 
-			// start listening
+				}, {
+					name: 'up',
+					command: 'nahoru',
+					action: function() { writeDown('nahoru'); }
+				}, {
+					name: 'down',
+					command: 'dolů',
+					action: function() { writeDown('dolů'); }
+				}, {
+					name: 'left',
+					command: 'doleva',
+					action: function() { writeDown('doleva'); }
+				}, {
+					name: 'right',
+					command: 'doprava',
+					action: function() { writeDown('doprava'); }
+
+				}, {
+					name: 'go up',
+					command: 'posuň nahoru',
+					action: function() { writeDown('posuň nahoru'); }
+				}, {
+					name: 'go down',
+					command: 'posuň dolů',
+					action: function() { writeDown('posuň dolů'); }
+				}, {
+					name: 'go left',
+					command: 'posuň doleva',
+					action: function() { writeDown('posuň doleva'); }
+				}, {
+					name: 'go right',
+					command: 'posuň doprava',
+					action: function() { writeDown('posuň doprava'); }
+
+				}, {
+					name: 'close',
+					command: 'zavři',
+					action: function() { writeDown('zavři'); }
+				}, {
+					name: 'open',
+					command: 'otevři',
+					action: function() { writeDown('otevři'); }
+				}, {
+					name: 'hide',
+					command: 'skryj',
+					action: function() { writeDown('skryj'); }
+				}, {
+					name: 'show',
+					command: 'ukaž',
+					action: function() { writeDown('ukaž'); }
+				}, {
+					name: 'show2',
+					command: 'zobraz',
+					action: function() { writeDown('zobraz'); }
+
+				}, {
+					name: 'zoom in',
+					command: 'přibliž',
+					action: function() { writeDown('přibliž'); }
+				}, {
+					name: 'zoom out',
+					command: 'oddal',
+					action: function() { writeDown('oddal'); }
+				}, {
+					name: 'switch',
+					command: 'přepni',
+					action: function() { writeDown('přepni'); }
+				}, {
+					name: 'swap',
+					command: 'vyměň',
+					action: function() { writeDown('vyměň'); }
+
+				}, {
+					name: 'back',
+					command: 'zpět',
+					action: function() { writeDown('zpět'); }
+				}, {
+					name: 'back2',
+					command: 'zpátky',
+					action: function() { writeDown('zpátky'); }
+				}, {
+					name: 'next',
+					command: 'další',
+					action: function() { writeDown('další'); }
+				}, {
+					name: 'previous',
+					command: 'předchozí',
+					action: function() { writeDown('předchozí'); }
+				}, {
+					name: 'next2',
+					command: 'dál',
+					action: function() { writeDown('dál'); }
+					
+
+				}, {
+					name: '1',
+					command: 'napiš one',
+					action: function() { writeDown('1'); }
+				}, {
+					name: '5',
+					command: 'napiš five',
+					action: function() { writeDown('5'); }
+				}, {
+					name: '8',
+					command: 'napiš eight',
+					action: function() { writeDown('8'); }
+				}, {
+					name: '3.14',
+					command: 'napiš 3.14',
+					action: function() { writeDown('3.14'); }
+				}, {
+					name: '76',
+					command: 'napiš 76',
+					action: function() { writeDown('76'); }
+				}, {
+					name: '673.26',
+					command: 'napiš 673.26',
+					action: function() { writeDown('673.26'); }
+				}, {
+					name: '1256.5',
+					command: 'napiš 1256.5',
+					action: function() { writeDown('1256.5'); }
+				}]
+			});			
+
+			
 			mumble.start();
 		</script>
     </body>

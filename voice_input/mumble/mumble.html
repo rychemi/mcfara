@@ -13,47 +13,51 @@
     </head>
     <body>
 
-        <section>
-            <div id="colorWindow">
-                <ul>
-                    <li class="box orange">start / turn on</li>
-                    <li class="box blue">go up</li>
-                    <li class="box violet">switch</li>
-                    <li class="box yellow">go back / left</li>
-                    <li class="box black">stop / turn off</li>
-                    <li class="box red">go next / right</li>
-					<li class="box gray">pause / wait</li>
-					<li class="box green">go down</li>
-					<li class="box pink">continue</li>
-                </ul>
-            </div>
-        </section>
-		
-		<section>
-            <button class="button" onclick="restartColor()">click to restart</button>
-        </section>
-		
-		<section class="sectionReturn">
-            <button class="button buttonReturn" onclick="location.href='../voice_input.html'">← return</button>
-        </section>
-		
-		<script>
-			// Change color of colorWindow box to default white
-			function restartColor() {
-				document.querySelector('#colorWindow').className = 'white';
-			}
+			<section style="margin-top:1em">
+					<p><b>Command list: </b>
+						 start, stop, wait, pause, 
+						 up, down, left, right,
+						 go up, go down, go left, go right, 
+						 next, back, previous, continue, 
+						 hide, show, open, close,
+						 turn on, turn off, swap, switch,
+						 zoom in, zoom out</p>
+					<p><b>numbers: </b> number (1, 5, 8, 3.14, 76, 673.26, 1256.5)</p>
+					<div style="margin-top:0.5em; text-align:center;">
+						<button class="button buttonSky f15" onclick="skipCommand()"> skip command </button>
+						<button class="button buttonChoco f15" onclick="restartLog()"> restart log </button>
+					</div>
+	
+					<div id="dashedBox">
+						<p style="font-weight: bold; margin-right: 50% "> Phrases catched: </p>
+						<div id="notepad"></div>
+					</div>
+				</section>
+						
+			<section class="sectionReturn">
+				<button class="button buttonReturn" onclick="location.href='../voice_input.html'">← return</button>
+		</section>
 			
-			// Change color of colorWindow box
-			function changeColor(newColor) {
-				document.querySelector('#colorWindow').className = newColor;
-			}
-		</script>
+			<script>	
+				function restartLog() {
+					document.getElementById('notepad').innerHTML = " ";
+				}
+	
+				function skipCommand() {
+					writeDown("-");
+				}
+	
+				function writeDown(phrase) {
+					document.getElementById('notepad').innerHTML += phrase +  "<br />";
+				}
+			</script>
 		
 		
 		<script>
+
 			var mumble = new Mumble({
 				language: 'en-US',
-				debug: false, // set to true to get some detailed information about what's going on
+				debug: false,
 
 				commands: [{
 					name: 'hello',
@@ -61,47 +65,150 @@
 					action: function() {
 						alert("Hello!");
 					}
-				},
-				{
-					name: 'up',
-					command: /(go up|up)/,
-					action: function() { changeColor('blue'); }
-				}, {
-					name: 'down',
-					command: /(go)?\s?down/,
-					action: function() { changeColor('green'); }
-				}, {
-					name: 'next',
-					command: /(go next|next|go right|right)/,
-					action: function() { changeColor('red'); }
-				}, {
-					name: 'back',
-					command: /(go back|back|go left|left)/,
-					action: function() { changeColor('yellow'); }
 				}, {
 					name: 'start',
-					command: /(start|turn on)/,
-					action: function() { changeColor('orange'); }
+					command: 'start',
+					action: function() { writeDown('start'); }
 				}, {
 					name: 'stop',
-					command: /(stop|turn off)/,
-					action: function() { changeColor('black'); }
+					command: 'stop',
+					action: function() { writeDown('stop'); }
+				}, {
+					name: 'pause',
+					command: 'pause',
+					action: function() { writeDown('pause'); }
+				}, {
+					name: 'wait',
+					command: 'wait',
+					action: function() { writeDown('wait'); }
+
+				}, {
+					name: 'up',
+					command: 'up',
+					action: function() { writeDown('up'); }
+				}, {
+					name: 'down',
+					command: 'down',
+					action: function() { writeDown('down'); }
+				}, {
+					name: 'left',
+					command: 'left',
+					action: function() { writeDown('left'); }
+				}, {
+					name: 'right',
+					command: 'right',
+					action: function() { writeDown('right'); }
+
+				}, {
+					name: 'go up',
+					command: 'go up',
+					action: function() { writeDown('go up'); }
+				}, {
+					name: 'go down',
+					command: 'go down',
+					action: function() { writeDown('go down'); }
+				}, {
+					name: 'go left',
+					command: 'go left',
+					action: function() { writeDown('go left'); }
+				}, {
+					name: 'go right',
+					command: 'go right',
+					action: function() { writeDown('go right'); }
+
+				}, {
+					name: 'close',
+					command: 'close',
+					action: function() { writeDown('close'); }
+				}, {
+					name: 'open',
+					command: 'open',
+					action: function() { writeDown('open'); }
+				}, {
+					name: 'hide',
+					command: 'hide',
+					action: function() { writeDown('hide'); }
+				}, {
+					name: 'show',
+					command: 'show',
+					action: function() { writeDown('show'); }
+
+				}, {
+					name: 'turn on',
+					command: 'turn on',
+					action: function() { writeDown('turn on'); }
+				}, {
+					name: 'turn off',
+					command: 'turn off',
+					action: function() { writeDown('turn off'); }
 				}, {
 					name: 'switch',
 					command: 'switch',
-					action: function() { changeColor('violet'); }
+					action: function() { writeDown('switch'); }
 				}, {
-					name: 'pause',
-					command: /(pause|wait)/,
-					action: function() { changeColor('gray'); }
+					name: 'swap',
+					command: 'swap',
+					action: function() { writeDown('swap'); }
+
+				}, {
+					name: 'zoom in',
+					command: 'zoom in',
+					action: function() { writeDown('zoom in'); }
+				}, {
+					name: 'zoom out',
+					command: 'zoom out',
+					action: function() { writeDown('zoom out'); }
+
+				}, {
+					name: 'back',
+					command: 'back',
+					action: function() { writeDown('back'); }
+				}, {
+					name: 'next',
+					command: 'next',
+					action: function() { writeDown('next'); }
+				}, {
+					name: 'previous',
+					command: 'previous',
+					action: function() { writeDown('previous'); }
 				}, {
 					name: 'continue',
 					command: 'continue',
-					action: function() { changeColor('pink'); }
-				}]
-			});
+					action: function() { writeDown('continue'); }
 
-			// Start listening
+
+				}, {
+					name: '1',
+					command: 'number one',
+					action: function() { writeDown('1'); }
+				}, {
+					name: '5',
+					command: 'number five',
+					action: function() { writeDown('5'); }
+				}, {
+					name: '8',
+					command: 'number eight',
+					action: function() { writeDown('8'); }
+				}, {
+					name: '3.14',
+					command: 'number 3.14',
+					action: function() { writeDown('3.14'); }
+				}, {
+					name: '76',
+					command: 'number 76',
+					action: function() { writeDown('76'); }
+				}, {
+					name: '673.26',
+					command: 'number 673.26',
+					action: function() { writeDown('673.26'); }
+				}, {
+					name: '1256.5',
+					command: 'number 1256.5',
+					action: function() { writeDown('1256.5'); }
+				}]
+			});			
+
+			
 			mumble.start();
 		</script>
 	
