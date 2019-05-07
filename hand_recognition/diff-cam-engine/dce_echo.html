@@ -13,8 +13,8 @@
 	<body onload="onLoad();">
 		
 		<section style="margin-top: 1em; text-align: center;">
-		
-				
+					
+					<button style="margin-right: 0.5em; " class="button buttonGreen f15" onclick="begin(0)">start [complete]</button>
 					<button class="button  f15" onclick="begin(1)">start [1]</button>
 					<button style="margin-left: 0.5em; " class="button  f15" onclick="begin(2)">start [2]</button>
 								
@@ -24,9 +24,7 @@
 					</table>
 					<div class="stopwatch"></div>
 				
-		
-
-			<h2><div id="instruction">&nbsp;</div></h2>
+				<h2><div id="instruction">&nbsp;</div></h2>
 		</section>
 
 		<div class="wrapper">
@@ -42,16 +40,12 @@
 		</section>
 		
 		<section class="sectionReturn" >
-			<button class="button buttonReturn" onclick="location.href='../../mazes.html'">← return</button>
+			<button class="button buttonReturn" onclick="location.href='../../echos.html'">← return</button>
 		</section>
 
 
 		<script src="../../stopwatch.js"></script>
 		<script>
-		function move(direction) {
-			changeDirection(direction);
-		}
-
 		let stopwatch = new Stopwatch(
   		document.querySelector('.stopwatch'),
 			document.querySelector('.results'));

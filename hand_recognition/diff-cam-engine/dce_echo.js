@@ -11,7 +11,7 @@ var directionTimer = false;
 var dirScript1 = [38, 38, 40, 40, 37, 39, 37, 39, 38, 40, 38, 40, 37, 37, 39, 39];
 //up, left, down, right, up, right, down, left, up
 var dirScript2 = [38, 37, 40, 39, 38, 39, 40, 37, 38];
-var directionScript = dirScript1;
+var directionScript = dirScript1.concat(dirScript2);
 
 
 var currentDir = 0;
