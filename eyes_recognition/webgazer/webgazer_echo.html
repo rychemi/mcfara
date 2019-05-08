@@ -83,13 +83,13 @@
 						directionScript = dirScript2;
 					}      
           
-          setTimeout(function() { document.getElementById("instruction").innerHTML = "GET READY";}, 15000);
+          setTimeout(function() { document.getElementById("instruction").innerHTML = "GET READY";}, 25000);
 
 				  setTimeout(function() {
             restartStopwatch();
 					  capturing = true;
             showNext();              
-            }, 20000);
+            }, 30000);
 
           beginRecognition();
 				}
@@ -319,7 +319,7 @@
     if (capturing && !directionTimer && (data.x < window.innerWidth * 0.1 || data.x > window.innerWidth * 0.9
         || data.y < window.innerHeight * 0.1 || data.y > window.innerHeight * 0.9)) {
       directionTimer = true;
-      setTimeout(function() { directionTimer = false; }, 1000);
+      setTimeout(function() { directionTimer = false; }, 3000);
 
       if (data.x < window.innerWidth * 0.1) {
         //document.getElementById('notepad').innerHTML += "LEFT ";

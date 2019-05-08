@@ -28,12 +28,12 @@ const modelParams = {
 var dirScript1 = [38, 38, 40, 40, 37, 39, 37, 39, 38, 40, 38, 40, 37, 37, 39, 39];
 //up, left, down, right, up, right, down, left, up
 var dirScript2 = [38, 37, 40, 39, 38, 39, 40, 37, 38];
-var directionScript = dirScript1 + dirScript2;
-
+var directionScript = dirScript1.concat(dirScript2);
 
 var currentDir = 0;
 var score = 0;
 var capturing = false;
+var directionTimer = false;
 
 
 function playScript(num) {
@@ -132,30 +132,36 @@ function runDetection() {
             requestAnimationFrame(runDetection);
         }
 		
-		for (let i = 0; i < predictions.length; i++) {
-			//context.fillRect(predictions[i].bbox[0] + (predictions[i].bbox[2] / 2), predictions[i].bbox[1] + (predictions[i].bbox[3] / 2), 5, 5)
-			//a.fillRect(e[r].bbox[0]+e[r].bbox[2]/2,e[r].bbox[1]+e[r].bbox[3]/2,5,5),
+		if(capturing && !directionTimer) {
+			for (let i = 0; i < predictions.length; i++) {
+				//context.fillRect(predictions[i].bbox[0] + (predictions[i].bbox[2] / 2), predictions[i].bbox[1] + (predictions[i].bbox[3] / 2), 5, 5)
+				//a.fillRect(e[r].bbox[0]+e[r].bbox[2]/2,e[r].bbox[1]+e[r].bbox[3]/2,5,5),
+				
+				let direction = false;
+				if (predictions[i].bbox[0] + (predictions[i].bbox[2] / 2) < 125) {
+					if (!pause) processResult(37);
+					direction = true;
+				}
+				if (predictions[i].bbox[0] + (predictions[i].bbox[2] / 2) > 450) {
+					if (!pause) processResult(39);
+					direction = true;
+				}
+				if (predictions[i].bbox[1] + (predictions[i].bbox[3] / 2) > 350) {
+					if (!pause) processResult(40);
+					direction = true;
+				}
+				if (predictions[i].bbox[1] + (predictions[i].bbox[3] / 2) < 115) {
+					if (!pause) processResult(38);
+					direction = true;
+				}
+				
+				directionTimer = true;
+				setTimeout(function() { directionTimer = false; }, 500);
 			
-			let direction = false;
-			if (predictions[i].bbox[0] + (predictions[i].bbox[2] / 2) < 125) {
-				if (!pause) processResult(37);
-				direction = true;
+				pause = direction; //comment/uncomment for continuous predection
 			}
-			if (predictions[i].bbox[0] + (predictions[i].bbox[2] / 2) > 450) {
-				if (!pause) processResult(39);
-				direction = true;
-			}
-			if (predictions[i].bbox[1] + (predictions[i].bbox[3] / 2) > 350) {
-				if (!pause) processResult(40);
-				direction = true;
-			}
-			if (predictions[i].bbox[1] + (predictions[i].bbox[3] / 2) < 115) {
-				if (!pause) processResult(38);
-				direction = true;
-			}
-			
-			pause = direction; //comment/uncomment for continuous predection
-		}			
+		}
+					
     });
 }
 
