@@ -11,6 +11,7 @@
 <body> 
     <section style="margin-top: 1em; text-align: center;">
 		
+        <button style="margin-right: 0.5em; "class="buttonGreen  f15" onclick="playScript(0)">start [1]</button>
         <button class="button  f15" onclick="playScript(1)">start [1]</button>
         <button style="margin-left: 0.5em; " class="button  f15" onclick="playScript(2)">start [2]</button>
               
@@ -66,7 +67,7 @@
 			var dirScript1 = [38, 38, 40, 40, 37, 39, 37, 39, 38, 40, 38, 40, 37, 37, 39, 39];
 			//up, left, down, right, up, right, down, left, up
 			var dirScript2 = [38, 37, 40, 39, 38, 39, 40, 37, 38];
-			var directionScript = dirScript1;
+			var directionScript = dirScript1.concat(dirScript2);
 
       var capturing = false;
 			var currentDir = 0;
