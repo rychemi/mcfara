@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
 
-		<link rel="stylesheet" type="text/css" href="../style.css" title="style" />
+		<link rel="stylesheet" type="text/css" href="../../style.css" title="style" />
 		
 		
 		
@@ -41,40 +41,6 @@
 				document.querySelector('#color-example').className = 'white';
 			}
 		</script>
-
-<!-- DELETE ->
-	<script src="annyang.js"></script>
-<script>
-if (annyang) {
-  // Let's define a command.
-  var commands = {
-    'hello': function() { alert('Hello!'); },
-	
-	'start': function() { document.querySelector('#color-example').className = 'orange'; },
-	'turn on': function() { document.querySelector('#color-example').className = 'orange'; },
-	'(go) up': function() { document.querySelector('#color-example').className = 'blue'; },
-	'switch': function() { document.querySelector('#color-example').className = 'violet'; },
-	'(go) back': function() { document.querySelector('#color-example').className = 'yellow'; },
-	'(go) left': function() { document.querySelector('#color-example').className = 'yellow'; },
-	'stop': function() { document.querySelector('#color-example').className = 'black'; },
-	'(turn) off': function() { document.querySelector('#color-example').className = 'black'; },
-	'(go) next': function() { document.querySelector('#color-example').className = 'red'; },
-	'(go) right': function() { document.querySelector('#color-example').className = 'red'; },
-	'pause': function() { document.querySelector('#color-example').className = 'gray'; },
-	'wait': function() { document.querySelector('#color-example').className = 'gray'; },
-	'(go) down': function() { document.querySelector('#color-example').className = 'green'; },
-	'continue': function() { document.querySelector('#color-example').className = 'pink'; }
-  };
-  
-
-  // Add our commands to annyang
-  annyang.addCommands(commands);
-
-  // Start listening.
-  annyang.start();
-}
-</script>
-<!-- DELETE -->	
 	
 	
 	<select id="keyword"></select>

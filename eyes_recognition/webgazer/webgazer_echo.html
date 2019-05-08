@@ -21,7 +21,7 @@
         </table>
         <div class="stopwatch"></div>
     
-      <h2><div id="instruction">&nbsp;</div></h2>
+      <h2><div style="margin-top: 15%;" id="instruction">&nbsp;</div></h2>
     </section>
 
     <section>
@@ -69,6 +69,7 @@
 			var dirScript2 = [38, 37, 40, 39, 38, 39, 40, 37, 38];
 			var directionScript = dirScript1.concat(dirScript2);
 
+      let pause = false;
       var capturing = false;
 			var currentDir = 0;
       var score = 0;
@@ -237,7 +238,7 @@
       .attr("cy", function(d) { return d.y; });
     });
 
-    svg.append("line")
+    /*svg.append("line")
     .attr("id", "eyeline1" )
     .attr("stroke-width",2)
     .attr("stroke","red");
@@ -245,7 +246,7 @@
     svg.append("line")
     .attr("id", "eyeline2" )
     .attr("stroke-width",2)
-    .attr("stroke","red");
+    .attr("stroke","red");*/
 
     svg.append("rect")
     .attr("id","predictionSquare")
@@ -318,26 +319,28 @@
     //recognition of direction
     if (capturing && !directionTimer && (data.x < window.innerWidth * 0.1 || data.x > window.innerWidth * 0.9
         || data.y < window.innerHeight * 0.1 || data.y > window.innerHeight * 0.9)) {
+      let direction = false;    
       directionTimer = true;
-      setTimeout(function() { directionTimer = false; }, 3000);
+      setTimeout(function() { directionTimer = false; }, 1000);
 
-      if (data.x < window.innerWidth * 0.1) {
-        //document.getElementById('notepad').innerHTML += "LEFT ";
+      if (data.x < window.innerWidth * 0.15) { //LEFT
         processResult(37);
+        direction = true;
       }
-      if (data.x > window.innerWidth * 0.9) {
-        //document.getElementById('notepad').innerHTML += "RIGHT ";
+      if (data.x > window.innerWidth * 0.85) { //RIGHT
         processResult(39)
+        direction = true;
       }
-      if (data.y < window.innerHeight * 0.1) {
-        //document.getElementById('notepad').innerHTML += "UP ";
+      if (data.y < window.innerHeight * 0.20) { //UP
         processResult(38)
+        direction = true;
       }
-      if (data.y > window.innerHeight * 0.9) {
-        //document.getElementById('notepad').innerHTML += "DOWN ";
+      if (data.y > window.innerHeight * 0.875) { //DOWN
         processResult(40);
+        direction = true;
       }
-      
+
+      pause = direction; //comment/uncomment for continuous predection
     }
     	
 	
