@@ -9,11 +9,7 @@
 </head>
 <body background="target_gaze.jpg" style="background-size: 100% 45em; background-repeat: no-repeat;">
 
-	<div id="notepad" style="text-align:left; margin-top:15em; margin-left:2em">
-		
-		<br\>command history:   <br\>
 	
-	</div>
 	
   <script src="https://d3js.org/d3.v3.min.js"></script>
   <script src="./webgazer.js"></script>
@@ -88,7 +84,7 @@
     .style("position","absolute")
     .style("z-index", 100000);
 
-    var color = d3.scale.category10();
+    /*var color = d3.scale.category10();
     var colors = [];
     for(var i=0; i<numberOfNodes-2; i++){
       //colors[i] = color(i%3);
@@ -100,7 +96,7 @@
     .data(nodes.slice(1))
     .enter().append("circle")
     .attr("r", function(d) { return d.radius; })
-    .style("fill", function(d, i) { return colors[i]; });
+    .style("fill", function(d, i) { return colors[i]; });*/
 
 
     force.on("tick", function(e) {
@@ -115,21 +111,21 @@
       .attr("cy", function(d) { return d.y; });
     });
 
-    svg.append("line")
+    /*svg.append("line")
     .attr("id", "eyeline1" )
     .attr("stroke-width",2)
-    .attr("stroke","red");
+    .attr("stroke","skyblue");
 
     svg.append("line")
     .attr("id", "eyeline2" )
     .attr("stroke-width",2)
-    .attr("stroke","red");
+    .attr("stroke","blue");*/
 
     svg.append("rect")
     .attr("id","predictionSquare")
-    .attr("width",5)
-    .attr("height",5)
-    .attr("fill","red");
+    .attr("width",15)
+    .attr("height",15)
+    .attr("fill","blue");
 
 
     svg.on("mousemove", function() {
@@ -191,41 +187,7 @@
               .attr("x",data.x)
               .attr("y",data.y);
 
-	//var width = window.innerWidth;
-    //var height = window.innerHeight;
-	
-	/*if (data.x < window.innerWidth * 0.1) {
-		document.getElementById('notepad').innerHTML += "LEFT ";			
-	}
-	if (data.x > window.innerWidth * 0.9) {
-		document.getElementById('notepad').innerHTML += "RIGHT ";			
-	}
-	if (data.y < window.innerHeight * 0.1) {
-		document.getElementById('notepad').innerHTML += "UP ";			
-	}
-	if (data.y > window.innerHeight * 0.9) {
-		document.getElementById('notepad').innerHTML += "DOWN ";			
-	}*/
-	
-		let direction = false;
-		if (data.x < window.innerWidth * 0.1) {
-			if (!pause) notepad.innerHTML += "LEFT ";
-			direction = true;
-		}
-		if (data.x > window.innerWidth * 0.9) {
-			if (!pause) notepad.innerHTML += "RIGHT ";
-			direction = true;
-		}
-		if (data.y < window.innerHeight * 0.1) {
-			if (!pause) notepad.innerHTML += "UP ";
-			direction = true;
-		}
-		if (data.y > window.innerHeight * 0.9) {
-			if (!pause) notepad.innerHTML += "DOWN ";
-			direction = true;
-		}
-		
-		pause = direction; //comment/uncomment for continuous predection
+
 	
 	
   }
