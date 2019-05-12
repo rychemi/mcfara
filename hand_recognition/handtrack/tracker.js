@@ -12,6 +12,8 @@ let imgindex = 1
 let isVideo = false;
 let model = null;
 
+var directionTimer = false;
+
 // video.width = 500
 // video.height = 400
 
@@ -60,31 +62,37 @@ function runDetection() {
         if (isVideo) {
             requestAnimationFrame(runDetection);
         }
-		
-		for (let i = 0; i < predictions.length; i++) {
-			//context.fillRect(predictions[i].bbox[0] + (predictions[i].bbox[2] / 2), predictions[i].bbox[1] + (predictions[i].bbox[3] / 2), 5, 5)
-			//a.fillRect(e[r].bbox[0]+e[r].bbox[2]/2,e[r].bbox[1]+e[r].bbox[3]/2,5,5),
-			
-			let direction = false;
-			if (predictions[i].bbox[0] + (predictions[i].bbox[2] / 2) < 125) {
-				if (!pause) notepad.innerHTML += "LEFT ";
-				direction = true;
-			}
-			if (predictions[i].bbox[0] + (predictions[i].bbox[2] / 2) > 450) {
-				if (!pause) notepad.innerHTML += "RIGHT ";
-				direction = true;
-			}
-			if (predictions[i].bbox[1] + (predictions[i].bbox[3] / 2) > 350) {
-				if (!pause) notepad.innerHTML += "DOWN ";
-				direction = true;
-			}
-			if (predictions[i].bbox[1] + (predictions[i].bbox[3] / 2) < 115) {
-				if (!pause) notepad.innerHTML += "UP ";
-				direction = true;
-			}
-			
-			pause = direction; //comment/uncomment for continuous predection
-		}			
+        
+        if(!directionTimer) {
+            for (let i = 0; i < predictions.length; i++) {
+                //context.fillRect(predictions[i].bbox[0] + (predictions[i].bbox[2] / 2), predictions[i].bbox[1] + (predictions[i].bbox[3] / 2), 5, 5)
+                //a.fillRect(e[r].bbox[0]+e[r].bbox[2]/2,e[r].bbox[1]+e[r].bbox[3]/2,5,5),
+                
+                let direction = false;
+                if (predictions[i].bbox[0] + (predictions[i].bbox[2] / 2) < 125) {
+                    if (!pause) notepad.innerHTML += "LEFT ";
+                    direction = true;
+                }
+                if (predictions[i].bbox[0] + (predictions[i].bbox[2] / 2) > 450) {
+                    if (!pause) notepad.innerHTML += "RIGHT ";
+                    direction = true;
+                }
+                if (predictions[i].bbox[1] + (predictions[i].bbox[3] / 2) > 350) {
+                    if (!pause) notepad.innerHTML += "DOWN ";
+                    direction = true;
+                }
+                if (predictions[i].bbox[1] + (predictions[i].bbox[3] / 2) < 115) {
+                    if (!pause) notepad.innerHTML += "UP ";
+                    direction = true;
+                }
+                
+                directionTimer = true;
+                setTimeout(function() { directionTimer = false; }, 500);
+                
+                pause = direction; //comment/uncomment for continuous predection
+            }	
+        }
+				
     });
 }
 

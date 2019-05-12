@@ -4,6 +4,8 @@ var scale = 10;	// capture resolution over motion resolution
 var isActivated = false;
 var lostTimeout;
 
+let directionTimer = false;
+
 function initSuccess() {
 	DiffCamEngine.start();
 }
@@ -41,22 +43,30 @@ function capture(payload) {
 			height: height
 		});
 
-		var middleX = (box.x.max + box.x.min) / 2;
-		var middleY = (box.y.max + box.y.min) / 2;
+		if (!directionTimer) {
+			var middleX = (box.x.max + box.x.min) / 2;
+			var middleY = (box.y.max + box.y.min) / 2;
 
-		if (middleX > 50) {
-			document.getElementById("log").innerHTML += "LEFT ";
-		}
-		if (middleX < 10) {
-			document.getElementById("log").innerHTML += "RIGHT ";
-		}
+			if (middleX > 50 || middleX < 10 || middleY < 15 || middleY > 40) {
+				
+				if (middleX > 50) {
+					document.getElementById("log").innerHTML += "LEFT ";
+				}
+				if (middleX < 10) {
+					document.getElementById("log").innerHTML += "RIGHT ";
+				}
+				if (middleY < 15) {
+					document.getElementById("log").innerHTML += "UP ";
+				}
+				if (middleY > 40) {
+					document.getElementById("log").innerHTML += "DOWN ";
+				}
 
-		if (middleY < 15) {
-			document.getElementById("log").innerHTML += "UP ";
+				directionTimer = true;
+				setTimeout(function() { directionTimer = false; }, 1000);
+			}
 		}
-		if (middleY > 40) {
-			document.getElementById("log").innerHTML += "DOWN ";
-		}
+		
 
 		clearTimeout(lostTimeout);
 		lostTimeout = setTimeout(2000);
