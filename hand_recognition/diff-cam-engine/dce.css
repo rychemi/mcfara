@@ -26,22 +26,3 @@ video {
 	border: 3px solid lime;
 	transition: all .1s;
 }
-
-
-.stopwatch {
-	text-align: center;
-  }
-  
-.results {
-	border-color: lime;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	bottom: 0;
-	left: 50%;
-  }
-  
-.controls {
-  position: fixed;
-  text-align: center;
-}

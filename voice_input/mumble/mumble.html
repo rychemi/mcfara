@@ -178,33 +178,15 @@
 
 
 				}, {
-					name: '1',
-					command: 'number one',
-					action: function() { writeDown('1'); }
-				}, {
-					name: '5',
-					command: 'number five',
-					action: function() { writeDown('5'); }
-				}, {
-					name: '8',
-					command: 'number eight',
-					action: function() { writeDown('8'); }
-				}, {
-					name: '3.14',
-					command: 'number 3.14',
-					action: function() { writeDown('3.14'); }
-				}, {
-					name: '76',
-					command: 'number 76',
-					action: function() { writeDown('76'); }
-				}, {
-					name: '673.26',
-					command: 'number 673.26',
-					action: function() { writeDown('673.26'); }
-				}, {
-					name: '1256.5',
-					command: 'number 1256.5',
-					action: function() { writeDown('1256.5'); }
+					name: 'numbers',
+					command: /^number (\d+)(.)?(\d+)?/,
+					action: function(number, point, decimal) {
+						let result = number;
+						if (point) {
+							result += point + decimal;
+						}
+						writeDown(result);
+					}
 				}]
 			});			
 

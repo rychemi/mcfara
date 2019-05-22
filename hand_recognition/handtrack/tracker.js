@@ -89,7 +89,7 @@ function runDetection() {
                 directionTimer = true;
                 setTimeout(function() { directionTimer = false; }, 500);
                 
-                pause = direction; //comment/uncomment for continuous predection
+                pause = direction; //comment/uncomment for continuous prediction
             }	
         }
 				

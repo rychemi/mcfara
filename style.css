@@ -1,8 +1,9 @@
 			body {
                 font-family: Helvetica, sans-serif;
 				margin: 0;
-            }
-            
+			}
+			
+            /**/
 			a, a:hover { 
 				outline: none;
 				text-decoration: none;
@@ -20,8 +21,9 @@
                 color: black;
                 margin-top: 1em;
                 text-align: center;
-            }
-
+			}
+			
+			/**/
             .box {
                 display: inline-block;
                 margin: 15px;
@@ -40,6 +42,7 @@
 				margin: 2px;
 			}
 			
+			/**/
 			#colorWindow {
                 -webkit-transition: background-color 300ms ease-in-out;
                 transition: background-color 300ms ease-in-out;

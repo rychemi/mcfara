@@ -8,35 +8,68 @@
 
 		<link rel="stylesheet" type="text/css" href="../../style.css" title="style" />
 		<link rel="stylesheet" href="handtrack.css">
+
+		<script src="../../maze.js"></script>
+		<!-- htmlMaze taken from https://github.com/JakeMoe/htmlMaze -->
 				
-    </head>
-    <body>
+	</head>
+	
+    <body onload="onLoad();">
 
 	<section>
 		<div id="updatenote" class="loader"> loading model ...</div>
 		<br>
 		<button  id="trackbutton" class="button buttonStart f15" type="button" > Start/Stop Recognition </button>
 	</section>
+
+	<section style="margin-top: 1em; margin-left: 10%">
+			<div style="margin-left: 2.5em; text-align: center; ">
+				<table style="margin: auto; width: 75%; ">
+					<td>
+					<table>
+						<tbody>
+							<tr>
+								<td><label for="size">size: </label></td>
+								<td><input id="size" type="text" size="5" value="4" style="text-align:center;"/></td>
+							
+							</tr><tr>
+								<td>&nbsp;</td>
+								<td><input id="generate" type="button" value="Generate" /></td>
+							</tr><tr>
+									<td>&nbsp;</td>
+									<td>&nbsp;</td>
+							</tr><tr>
+								<td><label for="score">score: </label></td>
+								<td><div id="score" style="text-align:center;">0</div></td>
+							</tr>
+						</tbody>
+					</table>
+					</td>
+					<td>
+							<canvas id="mainForm"></canvas>
+					</td>
+				</table>
+			</div>
+		
+		
+	</section>
 		
     <section>
 	<video class="videobox canvasbox hidden" autoplay="autoplay" id="myvideo"></video>
 	<canvas id="canvas" class="border canvasbox"></canvas>
 	</section>
-	
-	<section> 
-		<div>
-			<p style="font-weight: bold;"> Command History: </p>
-			<div id="notepad"> </div>
-			
-		</div> 
-		<button class="button f15" onclick="restartLog()"" style="margin-top: 2px" > restart log </button>
+		
+	<section class="sectionReturn" >
+		<button class="button buttonReturn" onclick="location.href='../../mazes.html'">← return</button>
 	</section>
-	
-		<button class="button buttonReturn" onclick="location.href='../hand_recognition.html'">← return</button>
 
         <script src="handtrack.min.js"> </script>
 		<script src="maze_tracker.js"></script>
+		<script>
+			function move(direction) {
+				changeDirection(direction);
+			}
+		</script>
 
-		<script> function restartLog() { document.getElementById("log").innerHTML = ""; }</script>
     </body>
 </html>

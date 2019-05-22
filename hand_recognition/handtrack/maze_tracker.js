@@ -5,7 +5,6 @@ const context = canvas.getContext("2d");
 let trackButton = document.getElementById("trackbutton");
 let updateNote = document.getElementById("updatenote");
 
-let notepad = document.getElementById("notepad");
 let pause = false;
 
 let imgindex = 1
@@ -67,19 +66,19 @@ function runDetection() {
 			
 			let direction = false;
 			if (predictions[i].bbox[0] + (predictions[i].bbox[2] / 2) < 125) {
-				if (!pause) notepad.innerHTML += "LEFT ";
+				if (!pause) move(37);;
 				direction = true;
 			}
 			if (predictions[i].bbox[0] + (predictions[i].bbox[2] / 2) > 450) {
-				if (!pause) notepad.innerHTML += "RIGHT ";
+				if (!pause) move(39);
 				direction = true;
 			}
 			if (predictions[i].bbox[1] + (predictions[i].bbox[3] / 2) > 350) {
-				if (!pause) notepad.innerHTML += "DOWN ";
+				if (!pause) move(40);;
 				direction = true;
 			}
 			if (predictions[i].bbox[1] + (predictions[i].bbox[3] / 2) < 115) {
-				if (!pause) notepad.innerHTML += "UP ";
+				if (!pause) move(38);;
 				direction = true;
 			}
 			
@@ -97,5 +96,7 @@ handTrack.load(modelParams).then(lmodel => {
     updateNote.innerText = "model loaded!"
     //runDetectionImage(handimg)
     trackButton.disabled = false
+
+    
 });
 
